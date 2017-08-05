@@ -192,15 +192,35 @@ We also consider the {\em skewness} of the in-degree and out-degree distribution
 A large positive degree skewness value for a WikiProject coeditor network
 implies that a small number of editors have a very large number of collaborators,
 while a small positive value implies that the editors having the most collaborators
-don't have too many more than a typical editor.
+don't have many more than a typical editor.
 
-Path length
+We also calculate the characteristic path length for each WikiProject coeditor network.
+The {\em distance} from editor A to editor B is the length of the shortest path from A to B.
+The {\em characteristic path length} is the mean distance between all editor pairs.
+If no path exists between two editors, we exclude that pair from the mean.
+For brevity, we will simply refer to this quantity as the {\em path length}.
+The path length represents how quickly information can move through the network.
+Networks with longer paths require more interactions for information to propagate through
+the network.
 
-Min-cut
+Our final network measure quantifies the connectivy of a project's coeditor network using
+min-cut size.
+The minimum $st$-cut between nodes $s$ and $t$ is the set of edges that must be removed in order that
+no path exists from $s$ to $t$.
+The minimum cut (min-cut) of a graph is the smallest minimum $st$-cut over all node pairs $st$. 
+The size of the graph min-cut quantifies the connectivity of a graph,
+but only incorporates information about edges lying on paths crossing the min-cut.
+Instead, we use the mean size of all minimum $st$-cuts, which we refer to as the
+{\em mean min-cut}.
+This measure quantifies the number of redundant paths information can take through the network.
+Networks with higher redundancy are more resilient to errors on one path \cite{}
+and allow innovation to propagate through complex contagion,
+in which innovations are only adopted after multiple exposures thorugh different sources
+\cite{}.
 
 \subsection{Model}
 
-OLS
+OLS, controls
 
 \subsection{Empirical Results}
 
@@ -241,7 +261,12 @@ TODO
 TODO
 
 \section{Acknowledgements}
-TODO
+Daniel Romero.
+Danielle Livneh, Karthik Ramanathan.
+Yan Chen, Tanya Rosenblat.
+MIT Center for Civic Media.
+Cooperation Working Group at the Harvard Berkman-Klein Center.
+School of Information.
 
 % ACM
 %\bibliographystyle{ACM-Reference-Format}
