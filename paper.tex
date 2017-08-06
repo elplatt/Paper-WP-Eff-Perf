@@ -13,6 +13,7 @@
 % Document-specific definitions
 \newcommand{\beq}{\begin{eqnarray}}
 \newcommand{\eeq}{\end{eqnarray}}
+\newcommand{\+}{\phantom{-}}
 
 % Copyright
 %\setcopyright{none}
@@ -220,11 +221,51 @@ in which innovations are only adopted after multiple exposures thorugh different
 
 \subsection{Model}
 
-OLS, controls
+We model performance and efficiency in WikiProjects using ordinary least-squares linear regression.
+Each WikiProject is taken as a single observation.
+The models include each project's coeditor network properties as independent variables.
+We also include several project-level variables to control for confounding factors.
+Some variables are log-transformed to reduce heteroscedasticity.
 
-\subsection{Empirical Results}
+Our models are summarized in Table \ref{tab:model}.
+Mean min-cut was found to be highly correlated with degree (see Figure \ref{fig:degree-mincut}),
+so we exclude min-cut to prevent collinearity.
+The high correlation between mean degree and min-cut implies that in most cases
+the minimum $st$-cut is simply the either set of edges from $s$ or the set of edges to $t$.
+The rarity of non-trivial min-cuts suggests that WikiProject coeditor networks have very few central
+bottlenecks and are thus highly decentralized.
 
+\begin{figure}
+\caption{
 TODO
+\label{fig:degree-mincut}
+}
+\end{figure}
+
+\begin{table*}
+\begin{tabular}{llc}
+ & Performance$^\dagger$ & Performance$^\dagger$ \\
+\hline
+Mean Degree$^\dagger$          &  -0.8$^{***}$  & \\
+In-Degree Skewness$^\dagger$   &  -0.6$^{***}$  & \\
+Out-Degree Skewness$^\dagger$  &               & \\
+Mean Path$^\dagger$            &  -0.36$^{***}$ & \\
+C-Eff$^\dagger$                &  -0.08$^{**}$  & \\
+Connectivity                   & \+0.02         & \\
+Mean Editors/Article$^\dagger$ & \+0.4$^{***}$  & \\
+Article Count$^\dagger$        &  -0.3          & \\
+Editor Count$^\dagger$         & \+0.7$^{*}$    & \\
+Revision Count$^\dagger$       & \+0.4          & \\
+First Assessment               & \+0.03         & \\
+Mean Article Age               &  -0.04         & \\
+\hline
+DoF                            & 1278           & \\
+R$^2$(adj)                       & 0.37           & \\
+\end{tabular}
+\caption{
+\label{tab:model}
+}
+\end{table*}
 
 \section{Numerical Simulation}
 
