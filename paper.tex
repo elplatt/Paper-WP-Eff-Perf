@@ -3,12 +3,13 @@
 
 % Manuscript
 \documentclass[10pt,twocolumn]{article}
-\usepackage{natbib}
+\usepackage[numbers]{natbib}
 
 \usepackage{booktabs} % For formal tables
 
 % Document-specific packages
 \usepackage{epigraph}
+\usepackage[flushleft]{threeparttable}
 
 % Document-specific definitions
 \newcommand{\beq}{\begin{eqnarray}}
@@ -124,7 +125,7 @@ We define these quantities on a per-WikiProject basis to enable comparisons acro
 projects.
 Our definitions are inpsired by work modeling collective problem-solving as an optimization
 problem \cite{}.
-The effieincy quantifies how quikly a solution is reached,
+The efficiency quantifies how quikly a solution is reached,
 while the performance quantifies how good the eventual solution is.
 
 For a WikiProject, efficiency quantifies how quickly project participants can improve the
@@ -307,9 +308,12 @@ R$^2_{adj}$                    & 0.37            & 0.37
                                & 0.30            & 0.30
                                & 0.43            & 0.43 \\
 \end{tabular}
-\caption{
+\caption{Standardized coefficients for OLS models.
 \label{tab:model}
 }
+\begin{tablenotes}
+\item $\dagger$ Log-transformed. * $p < 0.05$. ** $p < 0.01$. *** $p < 0.001$.
+\end{tablenotes}
 \end{table*}
 
 \section{Numerical Simulation}
@@ -347,12 +351,13 @@ TODO
 TODO
 
 \section{Acknowledgements}
-Daniel Romero.
-Danielle Livneh, Karthik Ramanathan.
-Yan Chen, Tanya Rosenblat.
-MIT Center for Civic Media.
-Cooperation Working Group at the Harvard Berkman-Klein Center.
-School of Information.
+I would like to thank Daniel Romero for valuable guidance and feedback;
+Danielle Livneh and Karthik Ramanathan for help collecting the data sets;
+Yan Chen and Tanya Rosenblat for feedback on the methodology;
+and the atendees of the May 25, 2017 MIT Center for Civic Media lab meeting and
+the Berkman-Klein Center's Cooperation Working Group for helpful feedback on
+preliminary results.
+This research was funded by the University of Michigan School of Information.
 
 % ACM
 %\bibliographystyle{ACM-Reference-Format}
