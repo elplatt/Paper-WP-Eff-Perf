@@ -203,7 +203,9 @@ If no path exists between two editors, we exclude that pair from the mean.
 For brevity, we will simply refer to this quantity as the {\em path length}.
 The path length represents how quickly information can move through the network.
 Networks with longer paths require more interactions for information to propagate through
-the network.
+the network,
+which has been shown to reduce efficiency in some settings
+\cite{mason_propagation_2008,barkoczi_social_2016}.
 
 Our final network measure quantifies the connectivy of a project's coeditor network using
 min-cut size.
@@ -215,10 +217,27 @@ but only incorporates information about edges lying on paths crossing the min-cu
 Instead, we use the mean size of all minimum $st$-cuts, which we refer to as the
 {\em mean min-cut}.
 This measure quantifies the number of redundant paths information can take through the network.
-Networks with higher redundancy are more resilient to errors on one path \cite{}
-and allow innovation to propagate through complex contagion,
+Networks with higher redundancy are more resilient to errors on one path \cite{albert_error_2000}
+and allow innovations to propagate through complex contagion,
 in which innovations are only adopted after multiple exposures thorugh different sources
-\cite{}.
+\cite{centola_complex_2007}.
+
+The mean path and min-cut network measures are computationally intensive,
+requiring distance and minimum $st$-cut calculations for each all node pairs.
+For larger projects, these calculations are impractical.
+When coeditor networks were large, we employed sampling to determine mean path length and mean
+min-cut.
+For mean path length, source nodes were sampled, and path length was calculated to all destination nodes
+from each of these.
+For min-cut, node pairs were sampled.
+In both cases, stratification was used to ensure the same number of nodes were were sampled from each of
+12 node degree quantiles.
+We estimated the error due to sampling by determining true values for a medium-sized project,
+and calculating error as a function of sample-size.
+Sample sizes were chosen such that relative error was below 10\%.
+Even with sampling, however, it was impractical to calculate these properties for the largest projects,
+so we exclude them from the analysis.
+To control for bias in project size, we include several size-related variables in our models.
 
 \subsection{Model}
 
@@ -226,6 +245,10 @@ We model performance and efficiency in WikiProjects using ordinary least-squares
 Each WikiProject is taken as a single observation.
 The models include each project's coeditor network properties as independent variables.
 We also include several project-level variables to control for confounding factors.
+The C-efficiency is included in the model for performance to control for the presence of articles
+that are actively being improved.
+Projects with lower efficiency will have more works-in-progress and could have an artifically low
+performance without controlling for efficiency.
 Some variables are log-transformed to reduce heteroscedasticity.
 
 Our models are summarized in Table \ref{tab:model}.
@@ -237,6 +260,11 @@ The rarity of non-trivial min-cuts suggests that WikiProject coeditor networks h
 bottlenecks and are thus highly decentralized.
 In-degree and out-degree skewness were also highly correlated, so each dependent variable was modelled twice:
 once with in-degree skewness and once with out-degree skewness.
+
+
+The regression results are consistent whether in-degree or out-degree skewness is used,
+although the out-degree models are slightly more significant when modelling efficiency.
+
 
 \begin{figure}
 \caption{
