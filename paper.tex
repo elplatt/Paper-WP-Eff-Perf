@@ -234,6 +234,8 @@ The high correlation between mean degree and min-cut implies that in most cases
 the minimum $st$-cut is simply the either set of edges from $s$ or the set of edges to $t$.
 The rarity of non-trivial min-cuts suggests that WikiProject coeditor networks have very few central
 bottlenecks and are thus highly decentralized.
+In-degree and out-degree skewness were also highly correlated, so each dependent variable was modelled twice:
+once with in-degree skewness and once with out-degree skewness.
 
 \begin{figure}
 \caption{
@@ -243,24 +245,67 @@ TODO
 \end{figure}
 
 \begin{table*}
-\begin{tabular}{llc}
- & Performance$^\dagger$ & Performance$^\dagger$ \\
+\small
+\begin{tabular}{lllllllll}
+                               & Perf$^\dagger$ & Perf$^\dagger$ & A-Eff$^\dagger$ & A-Eff$^\dagger$ & B-Eff$^\dagger$ & B-Eff$^\dagger$ & C-Eff$^\dagger$ & C-Eff$^\dagger$ \\
 \hline
-Mean Degree$^\dagger$          &  -0.8$^{***}$  & \\
-In-Degree Skewness$^\dagger$   &  -0.6$^{***}$  & \\
-Out-Degree Skewness$^\dagger$  &               & \\
-Mean Path$^\dagger$            &  -0.36$^{***}$ & \\
-C-Eff$^\dagger$                &  -0.08$^{**}$  & \\
-Connectivity                   & \+0.02         & \\
-Mean Editors/Article$^\dagger$ & \+0.4$^{***}$  & \\
-Article Count$^\dagger$        &  -0.3          & \\
-Editor Count$^\dagger$         & \+0.7$^{*}$    & \\
-Revision Count$^\dagger$       & \+0.4          & \\
-First Assessment               & \+0.03         & \\
-Mean Article Age               &  -0.04         & \\
+Mean degree$^\dagger$          &  -0.8$^{***}$  &  -0.8$^{***}$
+                               &  -0.6$^{**}$   &  -0.8$^{***}$
+                               &  &
+                               &  & \\
+In-degree skewness$^\dagger$   &  -0.6$^{***}$  & \+ ---      
+                               &  -0.4$^{**}$   & \+ ---      
+                               &  & \+ ---      
+                               &  & \+ ---      \\
+Out-degree skewness$^\dagger$  &  \+ ---        & -0.5$^{***}$  
+                               &  \+ ---        & -0.6$^{***}$
+                               &  \+ ---        &
+                               &  \+ ---        & \\
+Mean path$^\dagger$            &  -0.36$^{***}$ & -0.36$^{***}$ 
+                               &  -0.03         & -0.10
+                               &  &
+                               &  & \\
+C-eff$^\dagger$                &  -0.08$^{**}$  & -0.08$^{**}$  
+                               &  \+ ---        & \+ ---      
+                               &  \+ ---        & \+ ---      
+                               &  \+ ---        & \+ --- \\
+Connectivity                   & \+0.02         & \+0.02        
+                               &  \+0.08        & \+0.09
+                               &  &
+                               &  & \\
+Mean editors/article$^\dagger$ & \+0.4$^{***}$  & \+0.4$^{***}$ 
+                               & \+0.2          & \+0.3
+                               &  &
+                               &  & \\
+Article count$^\dagger$        &  -0.3          & -0.3          
+                               & \+0.6${^*}$    & \+0.7${^*}$ 
+                               &  &
+                               &  & \\
+Editor count$^\dagger$         & \+0.7$^{*}$    & \+0.5         
+                               & \+0.7$^{*}$    & \+1.0$^{**}$
+                               &  &
+                               &  & \\
+Revision count$^\dagger$       & \+0.4          & \+0.4         
+                               &  -0.8$^{**}$   & -0.9$^{**}$
+                               &  &
+                               &  & \\
+First assessment               & \+0.03         & \+0.06        
+                               & \+0.09$^{*}$   & \+0.10$^{**}$
+                               &  &
+                               &  & \\
+Mean article age               &  -0.04         & -0.03         
+                               &  -0.04         & -0.04
+                               &  &
+                               &  & \\
 \hline
-DoF                            & 1278           & \\
-R$^2$(adj)                       & 0.37           & \\
+DoF                            & 1278           & 1278          
+                               & 1048           & 1048
+                               &  &
+                               &  & \\
+R$^2_{adj}$                    & 0.37           & 0.37          
+                               & 0.15           & 0.16
+                               &  &
+                               &  & \\
 \end{tabular}
 \caption{
 \label{tab:model}
