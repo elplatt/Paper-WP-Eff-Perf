@@ -104,7 +104,7 @@ Contributions
 
 TODO
 
-\section{Empirical Methods}
+\section{WikiProjects}
 
 \subsection{Data}
 
@@ -124,7 +124,8 @@ we must have a way to quantify performance and efficiency.
 We define these quantities on a per-WikiProject basis to enable comparisons across different
 projects.
 Our definitions are inpsired by work modeling collective problem-solving as an optimization
-problem \cite{lazer_network_2007, mason_propagation_2008, mason_collaborative_2012, grim_scientific_2013, barkoczi_social_2016}.
+problem \cite{lazer_network_2007, mason_propagation_2008, mason_collaborative_2012,
+grim_scientific_2013, barkoczi_social_2016}.
 The efficiency quantifies how quikly a solution is reached,
 while the performance quantifies how good the eventual solution is.
 
@@ -261,10 +262,28 @@ bottlenecks and are thus highly decentralized.
 In-degree and out-degree skewness were also highly correlated, so each dependent variable was modelled twice:
 once with in-degree skewness and once with out-degree skewness.
 
-
 The regression results are consistent whether in-degree or out-degree skewness is used,
 although the out-degree models are slightly more significant when modelling efficiency.
+We also see that B-efficiency and C-efficiency have very similar models, but that A-efficiency behaves
+differently in its dependence on degree skewness and connectivity.
+The different behavior of A-efficiency is likely explained by the observation that the A-Class quality is
+infrequently used in practice, meaning that the quality level is usually achieved when an article is rated
+as a good or featured article, which involves a different consensus process than lower ratings.
 
+The negative dependence of performance on C-efficiency suggests there is generally a tradeoff between
+performance and efficiency.
+However, low degree is correlated with both higher efficiency and higher performance,
+suggesting that it is sometimes possible to improve both simultaneously.
+Much of the existing numerical work on networked social learning focuses on path length rather than degree,
+so we explore this result further using simulations in the next section.
+
+For path length, we find that longer lengths correspond to lower performance, contrary to the conjecture
+that longer path lengths allow more exploration \cite{mason_propagation_2008}
+but consistent with a conformity-based social learning strategy \cite{barkoczi_social_2016}.
+
+We also observe that high degree skewness is correlated with lower performance and lower A-efficiency,
+suggesting that articles in projects with decentralized coeditor networks reach featured or good status
+more efficiently, and reach higher quality ratings in general.
 
 \begin{figure}
 \caption{
@@ -344,7 +363,7 @@ R$^2_{adj}$                    & 0.37            & 0.37
 \end{tablenotes}
 \end{table*}
 
-\section{Numerical Simulation}
+\section{Numerical Simulations}
 
 Intro
 
