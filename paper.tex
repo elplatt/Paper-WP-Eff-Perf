@@ -9,7 +9,7 @@
 
 % Document-specific packages
 \usepackage{epigraph}
-\usepackage[flushleft]{threeparttable}
+\usepackage[normal]{threeparttable}
 \usepackage{graphicx}
 
 % Document-specific definitions
@@ -150,25 +150,11 @@ Later experiments by Suri and Watts \cite{suri_cooperation_2011} confirmed the
 existence of conditional altruism,
 but conlcuded that altruistic
 behavior only influences first-degree neighbors.
+While theories of networked social learning have been tested in small-scale lab experiments,
+there is a need to study real-world, large-scale collaborations,
+as we do in the present paper.
 
-Collaboration as decision-making
-Collaboration as consensus
-
-Collaboration as community
-Collaboration and social capital
-
-Collaboration on Wikipedia
-
-This project
-
-Wikipedia
-
-OLD STUFF BELOW HERE
-
-
-
-Collaboration has also been studied extensively through the lens of collective
-decision-making and voting theory.
+In addition to learning, decision-making is a crucial component of collaboration.
 The Condorcet jury theorem and its extensions \cite{list_epistemic_2001}
 describe how individuals can use majority voting to improve their
 decision-making ability.
@@ -184,7 +170,6 @@ decision-making power and act increasingly out of self-interest rather than
 the good of the group.
 Shaw and Hill found that behavior in online wiki communities is consistent
 with the iron law \cite{shaw_laboratories_2014}.
-
 A number of studies, summarized in \cite{gentry_consensus_1982},
 have examined consensus-based decision-making procedures, used extensively by
 the Quakers and later by activist communities.
@@ -194,20 +179,36 @@ Key findings include the tradeoff between speed and quality of decisions,
 the importance of expressing conflict early in the process,
 and the willingness to recognize when one's own views are counter to the
 existing consensus.
-The details of why this tradeoff occurs remain an open question.
 De Tar created InterTwinkles \cite{detar_intertwinkles:_2013},
 an online suite of tools to facilitate consensus decision-making
 in small cooperatives.
-With a better understanding of how large-scale network structure influences
-decision-making, such tools could be extended to large collaborations.
+Consensus decision making is notoriously difficult to apply in large groups.
+Wikipedia is one of the largest collaborations to use consensus-based
+decision-making,
+making it an excellent place to study the role of network structure in
+large-scale collaboration.
 
 Research on digital communities has also examined some non-network factors
 influcencing the quality of decisions and collaborative work.
 Using a simulation model, Hong and Page \cite{hong_groups_2004} found that
 diverse groups can outperform groups composed of the best individual
 problem-solvers.
-A similar result was observed on Wikipedia by
-Robert and Romero, who found that
+In sociology, much research has been done examining the relationship between
+network structure and social capital.
+Powerful individuals are often ``brokers''
+who act as exclusive intermediaries between disconnected portions of the
+social network \mbox{\cite{silverman_patronage_1965}}.
+Similarly, successful innovation in organizations often occurs in ``structural
+holes'' between groups \mbox{\cite{granovetter_strength_1973}}.
+There is some evidence that groups with high structural inequality,
+as evidenced by highly-skewed degree distributions,
+perform worse on colaborative tasks \mbox{\cite{kearns_experiments_2012}}.
+In the present project, we examine the effect of structural inequality
+on collaboration in Wikipedia.
+
+Several studies have examined the role of community in the specific context
+of Wikipedia.
+Robert and Romero found that
 larger group sizes yield higher article ratings
 (as determined by editor peer-review)
 when the groups are diverse and experienced
@@ -219,33 +220,17 @@ Both explicit and implicit coordination result in higher quality articles,
 with explicit coordination being especially central in the early life of an
 article.
 
-In sociology and anthropology, it has often been observed that an individual's
-position within a social network can result in privilege or power relative to
-others.
-For example, powerful individuals are often ``brokers''
-who act as exclusive intermediaries between disconnected portions of the
-social network \mbox{\cite{silverman_patronage_1965}}.
-Similarly, successful innovation in organizations often occurs in ``structural
-holes'' between groups \mbox{\cite{granovetter_strength_1973}}.
-Thus, the structure of a social network might encode meaningful information
-about the distribution of power and social capital within a group.
-This \mbox{\em strucural (in)equality} might have important consequences for the
-ability of a group to collaborate.
-There is some evidence that groups with high structural inequality,
-as evidenced by highly-skewed degree distributions,
-perform worse on colaborative tasks \mbox{\cite{kearns_experiments_2012}}.
-
 Across the broad range of work on collaboration and related topics,
 a few key themes emerge.
 The efficiency and performance of collaborations are important considerations
-and vary between different networks and problem types.
+and vary depending on both network structure and type of task.
 While social learning predicts no relationship between the two,
 contagion-style innovation models predict a tradeoff.
-Such a tradeoff has been observed in networked problem-solving and in
-different forms of group decision-making.
-
+Such a tradeoff has been observed in simulations and lab experiments on
+collaboration.
 In this project, I will investigate several gaps in the existing literature.
-In most cases, degree distribution seems to correlate to performance.
+In much of the existing literature,
+degree distribution correlate to performance.
 But aside from the naive Bayes case in social learning, it is unkown whether
 the correlation is explained best by degree or by another structural property
 correlated with degree.
@@ -256,10 +241,13 @@ this project examines a large number of naturally-occuring networks.
 Unlike artificial networks, the structural properties of these naturally-occuring
 networks can vary independently, making it easier to isolate individual
 network properties that correlate with outcome variables.
-This project will also test whether the detrimental effects of skewed
-distributions of network properties that have been observed in lab experiments
-\mbox{\cite{kearns_experiments_2012}}
-can be observed in large-scale, naturally-occuring data.
+This project will also examine Wikipedia for evidence that structural
+inequality (in the form of skewed
+degree distributions) has a deterimental effect on performance,
+as has been observed in lab experiments
+\mbox{\cite{kearns_experiments_2012}}.
+
+Wikipedia
 
 \section{WikiProjects}
 
@@ -624,6 +612,63 @@ with its performance increasing with higher rewiring.
 \label{fig:val-iter}
 }
 \end{figure}
+
+\begin{figure*}
+\includegraphics[width=6.67in,height=1.33in]{fig-deg-eff.pdf}
+\includegraphics[width=6.67in,height=1.33in]{fig-deg-perf.pdf}
+\caption{
+TODO
+\label{fig:deg-eff-perf}
+}
+\end{figure*}
+
+\begin{table}
+\small
+\caption{
+Efficiency regression coefficients.
+\label{tab:sim-eff}
+}
+\centering
+\bigskip
+\begin{tabular}{llc}
+\hline
+Strategy & Std. Coeff. \\
+\hline
+Best-neighbor       & -0.064 \\
+Conformity          & -0.080 \\
+Local best-neighbor & -0.086 \\
+Local conformity    & \+0.049 \\
+Consensus           & -0.0325$^{***}$ \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+\item \centering * $p < 0.05$. ** $p < 0.01$. *** $p < 0.001$.
+\end{tablenotes}
+\end{table}
+
+\begin{table}
+\small
+\caption{
+Performance regression coefficients.
+\label{tab:sim-perf}
+}
+\centering
+\bigskip
+\begin{tabular}{llc}
+\hline
+Strategy & Std. Coeff. \\
+\hline
+Best-neighbor       & \+0.084 \\
+Conformity          & \+0.130 \\
+Local best-neighbor & -0.080 \\
+Local conformity    & -0.020 \\
+Consensus           & \+2.38$\times{10^{-4\;**}}$ \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+\item \centering * $p < 0.05$. ** $p < 0.01$. *** $p < 0.001$.
+\end{tablenotes}
+\end{table}
 
 \section{Discussion}
 TODO
