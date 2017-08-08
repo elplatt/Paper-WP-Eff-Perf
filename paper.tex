@@ -102,40 +102,69 @@ Contributions
 
 \section{Background and Related Work}
 
-Collaboration as learning
+In the field of social learning,
+much research has been done to understand how groups of agents
+can solve problems collaboratively.
+In {\em networked social learning}, agents are represented by nodes on a network
+and can only interact with their neighbors.
+Social learning tasks can be divided into cases where agents have {\em generated signals}
+(independently noisy estimates of a true value)
+and those where agents have {\em interpreted signals}
+(solutions based on different internal models of available data)
+\cite{hong_interpreted_2009}.
+For generated signals,
+a naive Bayesian approach converges to the truth when conditions
+on the network's degree distribution,
+while the speed of convergence depends on the {\em spectral gap}
+between the two largest eigenvalues of the network's adjacency matrix
+\cite{golub_naive_2010}.
+Complex social learning tasks can also be modeled as the problem
+of maximizing an objective function with many local maxima,
+referred to as a {\em rugged landscape}
+\cite{lazer_network_2007, mason_propagation_2008, mason_collaborative_2012, grim_scientific_2013, barkoczi_social_2016}.
+Numerical simulations have shown ttht efficient networks (those with short paths between nodes)
+can allow less exploration of possible solutions,
+resulting in a fast convergence to a non-optimal solution \cite{mason_propagation_2008, grim_scientific_2013}.
+However, when conformity-based social learning strategies are used, efficient networks can outperform
+inefficient ones \cite{barkoczi_social_2016}.
+
+Lab-based experiments on networked collaboration
+suggest a complex interaction between network topology,
+and other factors.
+While groups of networked human subjects reliably perform very well on
+difficult graph-coloring tasks, the best performing network architectures
+(e.g., fully-connected vs. small-world) vary
+from task to task \cite{kearns_experiments_2012}.
+The same studies found that while human subjects tend to perform very well on
+a number of networks, they perform worst on collaboratively self-organized
+networks, highlighting the importance of intentionality
+in constructing communication channels for collective decision-making.
+Similarly, some network topologies are able to reach faster decisions in the
+presence of more information, while others show the opposite effect
+\cite{kearns_experimental_2006}.
+Based on lab experiments, Fowler and Christakis \cite{fowler_cooperative_2010}
+suggest that individual decisions towards altruism are conditional on their
+neighbor's behavior and ``contagious'' up to three degrees away.
+Later experiments by Suri and Watts \cite{suri_cooperation_2011} confirmed the
+existence of conditional altruism,
+but conlcuded that altruistic
+behavior only influences first-degree neighbors.
 
 Collaboration as decision-making
-
 Collaboration as consensus
 
 Collaboration as community
-
 Collaboration and social capital
 
-Networked collaboration: theory
-
-Networked collaboration: experiment
+Collaboration on Wikipedia
 
 This project
 
 Wikipedia
 
-Social learning on networks has been studied extensively
-\cite{mobius_social_2014},
-focusing on how networked agents can aggregate noisy measurements of
-a ``true'' value.
-In this setting, a naive Bayesian approach converges to the true value when
-certain conditions on degree distribution are met,
-with the speed of convergence depending on the network's {\em spectral gap},
-the gap between the largest two eigenvalues of its adjacency matrix
-\cite{golub_naive_2010}.
-In other settings, collaboration is better modeled as a problem
-of finding the global maximum of a multi-peaked payoff function.
-In this case, lab experiments have shown a complex relationship between
-convergence time, solution quality, with the efficacy of different
-network types (fully-connected, ring, small-world, etc.)
-varying depending on the parameters of the payoff function
-\cite{mason_propagation_2008}.
+OLD STUFF BELOW HERE
+
+
 
 Collaboration has also been studied extensively through the lens of collective
 decision-making and voting theory.
@@ -188,40 +217,6 @@ effect on the quality of Wikipedia articles \cite{kittur_harnessing_2008}.
 Both explicit and implicit coordination result in higher quality articles,
 with explicit coordination being especially central in the early life of an
 article.
-
-A number of theoretical and lab experiments have evaluated the role of networks
-in collective decision-making.
-Some studies focus on how network structure influences individual tendency
-towards altruistic decisions, rather than on decisions made by an entire
-group \cite{eshel_altruists_1998}.
-Grim et al. \cite{grim_scientific_2013} simulated the performance of decision-makers
-seeking to maximize an objective function by communicating their values on a
-number of network structures, observing another tradeoff between speed (for the
-fully-connected network) and quality (for a ring network).
-Grim et al. also found that speed correlated with the characteristic path length
-when running their simulations on parameterized small-world networks
-\cite{watts_collective_1998}.
-
-Lab-based experiments suggest a complex interaction between network topology
-and other factors.
-While groups of networked human subjects reliably perform very well on
-difficult graph-coloring tasks, the best performing network architectures
-(e.g., fully-connected vs. small-world) vary
-from task to task \cite{kearns_experiments_2012}.
-The same studies found that while human subjects tend to perform very well on
-a number of networks, they perform worst on collaboratively self-organized
-networks, highlighting the importance of intentionality
-in constructing communication channels for collective decision-making.
-Similarly, some network topologies are able to reach faster decisions in the
-presence of more information, while others show the opposite effect
-\cite{kearns_experimental_2006}.
-Based on lab experiments, Fowler and Christakis \cite{fowler_cooperative_2010}
-suggest that individual decisions towards altruism are conditional on their
-neighbor's behavior and ``contagious'' up to three degrees away.
-Later experiments by Suri and Watts \cite{suri_cooperation_2011} confirmed the
-existence of conditional altruism,
-but disconfirmed the three-degree hypothesis and conlcuded that altruistic
-behavior only influences first-degree neighbors.
 
 In sociology and anthropology, it has often been observed that an individual's
 position within a social network can result in privilege or power relative to
@@ -576,7 +571,7 @@ We include this strategy because of its similarity to the editing process of Wik
 at any given time, a Wikipedia article has a single state, determined by consensus,
 but editors may have differing opinions on how to improve that article.
 
-We also introduce local variants of these strategies.
+We also introduce local variants of the above strategies.
 The local variants are meant to reflect a more realistic collaboration setting where
 individual agents focus on sub-problems.
 In these variants, individual learning takes place on a subset of NK loci.
