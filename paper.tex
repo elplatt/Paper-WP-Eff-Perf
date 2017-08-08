@@ -102,7 +102,168 @@ Contributions
 
 \section{Background and Related Work}
 
-TODO
+Collaboration as learning
+
+Collaboration as decision-making
+
+Collaboration as consensus
+
+Collaboration as community
+
+Collaboration and social capital
+
+Networked collaboration: theory
+
+Networked collaboration: experiment
+
+This project
+
+Wikipedia
+
+Social learning on networks has been studied extensively
+\cite{mobius_social_2014},
+focusing on how networked agents can aggregate noisy measurements of
+a ``true'' value.
+In this setting, a naive Bayesian approach converges to the true value when
+certain conditions on degree distribution are met,
+with the speed of convergence depending on the network's {\em spectral gap},
+the gap between the largest two eigenvalues of its adjacency matrix
+\cite{golub_naive_2010}.
+In other settings, collaboration is better modeled as a problem
+of finding the global maximum of a multi-peaked payoff function.
+In this case, lab experiments have shown a complex relationship between
+convergence time, solution quality, with the efficacy of different
+network types (fully-connected, ring, small-world, etc.)
+varying depending on the parameters of the payoff function
+\cite{mason_propagation_2008}.
+
+Collaboration has also been studied extensively through the lens of collective
+decision-making and voting theory.
+The Condorcet jury theorem and its extensions \cite{list_epistemic_2001}
+describe how individuals can use majority voting to improve their
+decision-making ability.
+The process of decision-making is sometimes divided into
+``talking'' and ``voting'' stages.
+While heirarchical representative democracy sometimes improves the outcome
+of ``talk,'' it weakens the result of the Condoret jury theorem for voting
+\cite{list_epistemic_2001}.
+Robert Michels proposed the ``iron law of oligarchy,''
+\cite{michels_political_1999} which states that
+the earlier members of a group will, over time, gain disproportionate
+decision-making power and act increasingly out of self-interest rather than
+the good of the group.
+Shaw and Hill found that behavior in online wiki communities is consistent
+with the iron law \cite{shaw_laboratories_2014}.
+
+A number of studies, summarized in \cite{gentry_consensus_1982},
+have examined consensus-based decision-making procedures, used extensively by
+the Quakers and later by activist communities.
+The hallmark of consensus is the equal and active participation by all members
+of a group.
+Key findings include the tradeoff between speed and quality of decisions,
+the importance of expressing conflict early in the process,
+and the willingness to recognize when one's own views are counter to the
+existing consensus.
+The details of why this tradeoff occurs remain an open question.
+De Tar created InterTwinkles \cite{detar_intertwinkles:_2013},
+an online suite of tools to facilitate consensus decision-making
+in small cooperatives.
+With a better understanding of how large-scale network structure influences
+decision-making, such tools could be extended to large collaborations.
+
+Research on digital communities has also examined some non-network factors
+influcencing the quality of decisions and collaborative work.
+Using a simulation model, Hong and Page \cite{hong_groups_2004} found that
+diverse groups can outperform groups composed of the best individual
+problem-solvers.
+A similar result was observed on Wikipedia by
+Robert and Romero, who found that
+larger group sizes yield higher article ratings
+(as determined by editor peer-review)
+when the groups are diverse and experienced
+\cite{robert_when_2015}.
+Also on Wikipedia,
+Kittur and Kraut found that different types of coordination have a complex
+effect on the quality of Wikipedia articles \cite{kittur_harnessing_2008}.
+Both explicit and implicit coordination result in higher quality articles,
+with explicit coordination being especially central in the early life of an
+article.
+
+A number of theoretical and lab experiments have evaluated the role of networks
+in collective decision-making.
+Some studies focus on how network structure influences individual tendency
+towards altruistic decisions, rather than on decisions made by an entire
+group \cite{eshel_altruists_1998}.
+Grim et al. \cite{grim_scientific_2013} simulated the performance of decision-makers
+seeking to maximize an objective function by communicating their values on a
+number of network structures, observing another tradeoff between speed (for the
+fully-connected network) and quality (for a ring network).
+Grim et al. also found that speed correlated with the characteristic path length
+when running their simulations on parameterized small-world networks
+\cite{watts_collective_1998}.
+
+Lab-based experiments suggest a complex interaction between network topology
+and other factors.
+While groups of networked human subjects reliably perform very well on
+difficult graph-coloring tasks, the best performing network architectures
+(e.g., fully-connected vs. small-world) vary
+from task to task \cite{kearns_experiments_2012}.
+The same studies found that while human subjects tend to perform very well on
+a number of networks, they perform worst on collaboratively self-organized
+networks, highlighting the importance of intentionality
+in constructing communication channels for collective decision-making.
+Similarly, some network topologies are able to reach faster decisions in the
+presence of more information, while others show the opposite effect
+\cite{kearns_experimental_2006}.
+Based on lab experiments, Fowler and Christakis \cite{fowler_cooperative_2010}
+suggest that individual decisions towards altruism are conditional on their
+neighbor's behavior and ``contagious'' up to three degrees away.
+Later experiments by Suri and Watts \cite{suri_cooperation_2011} confirmed the
+existence of conditional altruism,
+but disconfirmed the three-degree hypothesis and conlcuded that altruistic
+behavior only influences first-degree neighbors.
+
+In sociology and anthropology, it has often been observed that an individual's
+position within a social network can result in privilege or power relative to
+others.
+For example, powerful individuals are often ``brokers''
+who act as exclusive intermediaries between disconnected portions of the
+social network \mbox{\cite{silverman_patronage_1965}}.
+Similarly, successful innovation in organizations often occurs in ``structural
+holes'' between groups \mbox{\cite{granovetter_strength_1973}}.
+Thus, the structure of a social network might encode meaningful information
+about the distribution of power and social capital within a group.
+This \mbox{\em strucural (in)equality} might have important consequences for the
+ability of a group to collaborate.
+There is some evidence that groups with high structural inequality,
+as evidenced by highly-skewed degree distributions,
+perform worse on colaborative tasks \mbox{\cite{kearns_experiments_2012}}.
+
+Across the broad range of work on collaboration and related topics,
+a few key themes emerge.
+The efficiency and performance of collaborations are important considerations
+and vary between different networks and problem types.
+While social learning predicts no relationship between the two,
+contagion-style innovation models predict a tradeoff.
+Such a tradeoff has been observed in networked problem-solving and in
+different forms of group decision-making.
+
+In this project, I will investigate several gaps in the existing literature.
+In most cases, degree distribution seems to correlate to performance.
+But aside from the naive Bayes case in social learning, it is unkown whether
+the correlation is explained best by degree or by another structural property
+correlated with degree.
+The characteristic path length and min-cut studied here are candidates for such
+degree-correlated factors.
+While existing work has focused on families of artificial networks,
+this project examines a large number of naturally-occuring networks.
+Unlike artificial networks, the structural properties of these naturally-occuring
+networks can vary independently, making it easier to isolate individual
+network properties that correlate with outcome variables.
+This project will also test whether the detrimental effects of skewed
+distributions of network properties that have been observed in lab experiments
+\mbox{\cite{kearns_experiments_2012}}
+can be observed in large-scale, naturally-occuring data.
 
 \section{WikiProjects}
 
