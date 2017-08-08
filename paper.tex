@@ -10,6 +10,7 @@
 % Document-specific packages
 \usepackage{epigraph}
 \usepackage[flushleft]{threeparttable}
+\usepackage{graphicx}
 
 % Document-specific definitions
 \newcommand{\beq}{\begin{eqnarray}}
@@ -450,7 +451,12 @@ TODO
 
 \begin{table*}
 \small
+\caption{Standardized coefficients for OLS models.
+\label{tab:model}
+}
+\bigskip
 \begin{tabular}{lllllllll}
+\hline
                                & Perf$^\dagger$ & Perf$^\dagger$ & A-Eff$^\dagger$ & A-Eff$^\dagger$ & B-Eff$^\dagger$ & B-Eff$^\dagger$ & C-Eff$^\dagger$ & C-Eff$^\dagger$ \\
 \hline
 Mean degree$^\dagger$          &  -0.84$^{***}$  &  -0.78$^{***}$
@@ -510,10 +516,8 @@ R$^2_{adj}$                    & 0.37            & 0.37
                                & 0.15            & 0.16
                                & 0.30            & 0.30
                                & 0.43            & 0.43 \\
+\hline
 \end{tabular}
-\caption{Standardized coefficients for OLS models.
-\label{tab:model}
-}
 \begin{tablenotes}
 \item $\dagger$ Log-transformed. * $p < 0.05$. ** $p < 0.01$. *** $p < 0.001$.
 \end{tablenotes}
@@ -607,6 +611,19 @@ the agent-agent network is increased.
 \subsection{Simulation results}
 
 TODO
+
+\begin{figure}
+\includegraphics[width=3.33in,height=1.67in]{fig-val-iter.pdf}
+\caption{
+Mean agent solution value over time, averaged over 100 trials.
+The left and right figures show results for agent networks with the probability of
+rewiring set to 0 and 1, respectively.
+In both, local strategies are less efficient and more performant than nonlocal.
+The consensus strategy is both more efficient and more performant than others,
+with its performance increasing with higher rewiring.
+\label{fig:val-iter}
+}
+\end{figure}
 
 \section{Discussion}
 TODO
