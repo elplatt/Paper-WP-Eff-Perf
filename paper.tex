@@ -82,7 +82,22 @@
 \maketitle
 
 \begin{abstract}
-TODO
+The internet has enabled collaborations at a scale never before possible,
+but the best practices for organizting such large collaboartions are still not clear.
+Wikipedia is a visible and successful example of such a collaboration which might offer
+insight into what makes large-scale, decentralized collaborations successful.
+We analyze the relationship between the structural properties of WikiProject coeditor networks
+and the performance and efficiency of those networks.
+We also perform numerical simulations to determine whether social learning on an NK model can
+reproduce the behavior observed on Wikipedia.
+We find several results seen in numerical and small-scale lab studies:
+a tradeoff between performance and efficiency and
+higher performance with less skewed node distributions and shorter path lengths.
+We also see behaviors not previously identified: an association between low degree coeditor networks
+and both higher performance and higher efficiency,
+suggesting possible benefits to decentralized collaborations made of smaller, more tightly-knit teams.
+We also propose a novel consensus-based social learning strategy that is both more efficient and higher
+performance than existing strategies, and reproduces some behaviors seen in WikiProjects.
 \end{abstract}
 
 \section{Introduction}
@@ -90,13 +105,28 @@ TODO
 {The problem with Wikipedia is that it only works in practice. In theory, it can never work.}
 {Miikka Ryokas \cite{cohen_latest_2007} }
 
-Wikipedia successful decentralized.
+The internet has enabled collaborations at a scale never before possible, a global scale.
+Wikipedia is one of the most successful and visible of these collaborations,
+and is particularly interesting for its highly decentralized structure with very little top-down control.
+It is notoriously difficult to organize even small groups without top-down control,
+and yet Wikipedia, with millions of editors, somehow functions.
+A better theoretical understanding of projects like Wikipedia is highly desireable as it could
+help inform the design of new collaborative projects.
+We focus on one aspect of organizing a large-scale decentralized collaboration: the network structure.
+If Wikipedia is not structured as a top-down hierarchy, how is it structured?
+And how does that structure influence its success?
 
-Efficiency Performance
-
-Coeditor network
-
-NK Simulations
+We approach these questions by analyzing WikiProjects on the English-language Wikipedia.
+WikiProjects are collections of thematically related articles,
+each with their own standards, norms, and processes for evaluating and improving articles.
+We analyze the coeditor networks of these projects: which editors have worked together on at least
+one article?
+In particular, we examine the relationship between the structure of a project's coeditor network
+and the performance and efficiency of its articles.
+Performance represents the ability of a project to get articles to a high quality level,
+while efficiency represents the ability to improve articles of any level quickly.
+We also perform numerical simulations to compare the behavior observed on Wikipedia to the results
+of several variants of a simple networked social learning model.
 
 Our main findings are:
 \begin{itemize}
@@ -400,50 +430,7 @@ To control for bias in project size, we include several size-related variables i
 
 \subsection{Regression Models}
 
-We model performance and efficiency in WikiProjects using ordinary least-squares linear regression.
-Each WikiProject is taken as a single observation.
-The models include each project's coeditor network properties as independent variables.
-We also include several project-level variables to control for confounding factors.
-The C-efficiency is included in the model for performance to control for the presence of articles
-that are actively being improved.
-Projects with lower efficiency will have more works-in-progress and could have an artifically low
-performance without controlling for efficiency.
-Some variables are log-transformed to reduce heteroscedasticity.
-
-Our models are summarized in Table \ref{tab:model}.
-Mean min-cut was found to be highly correlated with degree ($r=0.980$, $p<0.001$),
-so we exclude min-cut to prevent collinearity.
-The high correlation between mean degree and min-cut implies that in most cases
-the minimum $st$-cut is simply the either set of edges from $s$ or the set of edges to $t$.
-The rarity of non-trivial min-cuts suggests that WikiProject coeditor networks have very few central
-bottlenecks and are thus highly decentralized.
-In-degree and out-degree skewness were also highly correlated, so each dependent variable was modelled twice:
-once with in-degree skewness and once with out-degree skewness.
-
-The regression results are consistent whether in-degree or out-degree skewness is used,
-although the out-degree models are slightly more significant when modelling efficiency.
-We also see that B-efficiency and C-efficiency have very similar models, but that A-efficiency behaves
-differently in its dependence on degree skewness and connectivity.
-The different behavior of A-efficiency is likely explained by the observation that the A-Class quality is
-infrequently used in practice, meaning that the quality level is usually achieved when an article is rated
-as a good or featured article, which involves a different consensus process than lower ratings.
-
-The negative dependence of performance on C-efficiency suggests there is generally a tradeoff between
-performance and efficiency.
-However, low degree is correlated with both higher efficiency and higher performance,
-suggesting that it is sometimes possible to improve both simultaneously.
-Much of the existing numerical work on networked social learning focuses on path length rather than degree,
-so we explore this result further using simulations in the next section.
-
-For path length, we find that longer lengths correspond to lower performance, contrary to the conjecture
-that longer path lengths allow more exploration \cite{mason_propagation_2008}
-but consistent with a conformity-based social learning strategy \cite{barkoczi_social_2016}.
-
-We also observe that high degree skewness is correlated with lower performance and lower A-efficiency,
-suggesting that articles in projects with decentralized coeditor networks reach featured or good status
-more efficiently, and reach higher quality ratings in general.
-
-\begin{table*}
+\begin{table*}[!ht]
 \small
 \caption{Standardized coefficients for OLS models.
 \label{tab:model}
@@ -516,6 +503,49 @@ R$^2_{adj}$                    & 0.37            & 0.37
 \item $\dagger$ Log-transformed. * $p < 0.05$. ** $p < 0.01$. *** $p < 0.001$.
 \end{tablenotes}
 \end{table*}
+
+We model performance and efficiency in WikiProjects using ordinary least-squares linear regression.
+Each WikiProject is taken as a single observation.
+The models include each project's coeditor network properties as independent variables.
+We also include several project-level variables to control for confounding factors.
+The C-efficiency is included in the model for performance to control for the presence of articles
+that are actively being improved.
+Projects with lower efficiency will have more works-in-progress and could have an artifically low
+performance without controlling for efficiency.
+Some variables are log-transformed to reduce heteroscedasticity.
+
+Our models are summarized in Table \ref{tab:model}.
+Mean min-cut was found to be highly correlated with degree ($r=0.980$, $p<0.001$),
+so we exclude min-cut to prevent collinearity.
+The high correlation between mean degree and min-cut implies that in most cases
+the minimum $st$-cut is simply the either set of edges from $s$ or the set of edges to $t$.
+The rarity of non-trivial min-cuts suggests that WikiProject coeditor networks have very few central
+bottlenecks and are thus highly decentralized.
+In-degree and out-degree skewness were also highly correlated, so each dependent variable was modelled twice:
+once with in-degree skewness and once with out-degree skewness.
+
+The regression results are consistent whether in-degree or out-degree skewness is used,
+although the out-degree models are slightly more significant when modelling efficiency.
+We also see that B-efficiency and C-efficiency have very similar models, but that A-efficiency behaves
+differently in its dependence on degree skewness and connectivity.
+The different behavior of A-efficiency is likely explained by the observation that the A-Class quality is
+infrequently used in practice, meaning that the quality level is usually achieved when an article is rated
+as a good or featured article, which involves a different consensus process than lower ratings.
+
+The negative dependence of performance on C-efficiency suggests there is generally a tradeoff between
+performance and efficiency.
+However, low degree is correlated with both higher efficiency and higher performance,
+suggesting that it is sometimes possible to improve both simultaneously.
+Much of the existing numerical work on networked social learning focuses on path length rather than degree,
+so we explore this result further using simulations in the next section.
+
+For path length, we find that longer lengths correspond to lower performance, contrary to the conjecture
+that longer path lengths allow more exploration \cite{mason_propagation_2008}
+but consistent with a conformity-based social learning strategy \cite{barkoczi_social_2016}.
+
+We also observe that high degree skewness is correlated with lower performance and lower A-efficiency,
+suggesting that articles in projects with decentralized coeditor networks reach featured or good status
+more efficiently, and reach higher quality ratings in general.
 
 \section{Numerical Simulations}
 \label{sec:sim}
@@ -633,28 +663,6 @@ Mean Path length  & 1.735 & 0.019 \\
 \end{tabular}
 \end{table}
 
-Figure \ref{fig:val-iter} shows how agents' solutions improve after repeated applications of
-different learning strategies and rewiring values.
-Each curve represents an average over 100 trials, each with 250 agent solutions.
-For all rewiring values, local strategies are less efficient and more performant than their
-nonlocal counterparts.
-The consensus strategy is both more efficient and more performant than others,
-with its performance increasing with higher rewiring.
-
-The effect of degree on performance and efficiency is shown in Figure \ref{fig:deg-eff-perf} and
-Tables \ref{tab:sim-eff} and \ref{tab:sim-perf}.
-For both local and nonlocal versions of the best-neighbor and conformity strategies,
-there is no significant effect of degree on performance or efficiency.
-As noted above however, the local versions consistently have higher performance and lower efficiency
-than their nonlocal counterparts.
-We observe more interesting behavior with the consensus strategy.
-Node degree shows a significant negative correlation with degree,
-and a small but significant positive correlation with efficiency.
-The consensus simulations replicate the efficiency behavior observed in WikiProjects,
-but the opposite behavior for performance.
-But unlike other strategies, consensus demonstrates that degree distribution can have an
-impact on both performance and efficiency.
-
 \begin{figure}
 \includegraphics[width=3.33in,height=1.67in]{fig-val-iter.pdf}
 \caption{
@@ -667,15 +675,6 @@ with its performance increasing with higher rewiring.
 \label{fig:val-iter}
 }
 \end{figure}
-
-\begin{figure*}
-\includegraphics[width=6.67in,height=1.33in]{fig-deg-eff.pdf}
-\includegraphics[width=6.67in,height=1.33in]{fig-deg-perf.pdf}
-\caption{
-TODO
-\label{fig:deg-eff-perf}
-}
-\end{figure*}
 
 \begin{table}
 \small
@@ -724,6 +723,40 @@ Consensus           & \+2.38$\times{10^{-4\;**}}$ \\
 \item \centering * $p < 0.05$. ** $p < 0.01$. *** $p < 0.001$.
 \end{tablenotes}
 \end{table}
+
+\begin{figure*}
+\includegraphics[width=6.67in,height=1.33in]{fig-deg-eff.pdf}
+\includegraphics[width=6.67in,height=1.33in]{fig-deg-perf.pdf}
+\caption{
+Efficiency and Performance of social learning strategies vs network degree.
+Each point represents a single trial of 300 iterations.
+The consensus strategy shows increased performance and decreased efficiency as
+degree increases, while other strategies show no degree dependence.
+\label{fig:deg-eff-perf}
+}
+\end{figure*}
+
+Figure \ref{fig:val-iter} shows how agents' solutions improve after repeated applications of
+different learning strategies and rewiring values.
+Each curve represents an average over 100 trials, each with 250 agent solutions.
+For all rewiring values, local strategies are less efficient and more performant than their
+nonlocal counterparts.
+The consensus strategy is both more efficient and more performant than others,
+with its performance increasing with higher rewiring.
+
+The effect of degree on performance and efficiency is shown in Figure \ref{fig:deg-eff-perf} and
+Tables \ref{tab:sim-eff} and \ref{tab:sim-perf}.
+For both local and nonlocal versions of the best-neighbor and conformity strategies,
+there is no significant effect of degree on performance or efficiency.
+As noted above however, the local versions consistently have higher performance and lower efficiency
+than their nonlocal counterparts.
+We observe more interesting behavior with the consensus strategy.
+Node degree shows a significant negative correlation with degree,
+and a small but significant positive correlation with efficiency.
+The consensus simulations replicate the efficiency behavior observed in WikiProjects,
+but the opposite behavior for performance.
+But unlike other strategies, consensus demonstrates that degree distribution can have an
+impact on both performance and efficiency.
 
 \section{Discussion}
 \label{sec:discuss}
@@ -782,7 +815,26 @@ lab setting?
 \section{Conclusion}
 \label{sec:conclusion}
 
-TODO
+In this paper, we have described the relationship between the structural properties of WikiProject
+coeditor networks and the performance and efficiency of those networks.
+As in other studies, we see a tradeoff between performance and efficiency,
+but not an absolute tradeoff.
+Some properties, such as low degree, are associated with both higher performance and higher efficiency.
+We also find that the correlations between path length and performance are consistent with a conformity-based
+social learning strategy, but not a greedy best-neighbor strategy.
+We also observe improved performance in more decentralized project, as has been seen in small-scale lab experiments.
+While the performance and efficiency of most previously-studied social learning strategies depend more on path lenght than
+degree,
+we have proposed a novel consensus learning strategy that is more realistic, more efficient, and higher performance than
+existing strategies.
+While the efficiency and performance of existing strategies do not exhibit any degree-dependence, our consensus strategy
+demonstrates that degree-dependence is possible.
+While additional work is needed to determine causal relationships and how generalizable our results are,
+we have shown evidence that several phenomena predicted by numerical and small-scale lab experiments are present in a large,
+real-world network.
+And, we have identified new behaviors not explained by existing models, suggesting the need for alternate models.
+Our results suggest that the success of large-scale collaborations may be aided by greater decentralization,
+consensus or conformity-baased decision-making, and more tightly-knit collaborations between smaller teams.
 
 \section{Acknowledgements}
 I would like to thank Daniel M. Romero for valuable guidance and feedback;
