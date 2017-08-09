@@ -598,7 +598,55 @@ the agent-agent network is increased.
 
 \subsection{Simulation results}
 
-TODO
+We simulated 100 trials for rewiring values of 0.0, 0.167, 0.333, 0.5, 0.667, 0.833, and 1.0.
+For each trial we generated an NK model with N=250 and K=7 and ran each social learning strategy
+for 300 iterations,
+as well as a network based on that NK model and rewired.
+We confirmed that all trials converged to their maximum value before reaching the last iteration.
+Some statistics on the network properties of the networks are summarized in Table \ref{tab:stats}.
+We see that the coefficient of variation of degree is approimately 10\%,
+while only 1\% for mean path length, confirming that the rewiring process has a stronger influence
+on degree than on path length.
+
+\begin{table}
+\small
+\centering
+\caption{
+Simulated network statistics.
+\label{tab:stats}
+}
+\bigskip
+\begin{tabular}{lcc}
+\hline
+Property          & Mean  & Std. Dev. \\
+\hline
+Mean Degree       & 132.3 & 9.2 \\
+Mean Path length  & 1.735 & 0.019 \\
+\hline
+\end{tabular}
+\end{table}
+
+Figure \ref{fig:val-iter} shows how agents' solutions improve after repeated applications of
+different learning strategies and rewiring values.
+Each curve represents an average over 100 trials, each with 250 agent solutions.
+For all rewiring values, local strategies are less efficient and more performant than their
+nonlocal counterparts.
+The consensus strategy is both more efficient and more performant than others,
+with its performance increasing with higher rewiring.
+
+The effect of degree on performance and efficiency is shown in Figure \ref{fig:deg-eff-perf} and
+Tables \ref{tab:sim-eff} and \ref{tab:sim-perf}.
+For both local and nonlocal versions of the best-neighbor and conformity strategies,
+there is no significant effect of degree on performance or efficiency.
+As noted above however, the local versions consistently have higher performance and lower efficiency
+than their nonlocal counterparts.
+We observe more interesting behavior with the consensus strategy.
+Node degree shows a significant negative correlation with degree,
+and a small but significant positive correlation with efficiency.
+The consensus simulations replicate the efficiency behavior observed in WikiProjects,
+but the opposite behavior for performance.
+But unlike other strategies, consensus demonstrates that degree distribution can have an
+impact on both performance and efficiency.
 
 \begin{figure}
 \includegraphics[width=3.33in,height=1.67in]{fig-val-iter.pdf}
