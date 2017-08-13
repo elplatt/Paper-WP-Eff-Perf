@@ -329,7 +329,7 @@ each of the project-level quality assessments: A, B, and C.
 If $T(W,G)$ is the set of transitions in project $W$ from below grade $G$ to grade $G$ (or higher),
 then we quantify the efficiency $E(W,G)$ as:
 \beq
-E(W,G) &=& \frac{1}{|W(P,G)|} \sum_{t \in W(P,G)} \left[ \frac{r(t)}{g(t)} \right]^{-1},
+E(W,G) &=& \frac{1}{|T(W,G)|} \sum_{t \in T(W,G)} \left[ \frac{r(t)}{g(t)} \right]^{-1},
 \eeq
 where $r(t)$ is the number of revisions since the previous grade transition,
 and $g(t)$ is the number of grade levels crossed by transition $t$.
@@ -516,13 +516,22 @@ Some variables are log-transformed to reduce heteroscedasticity.
 
 Our models are summarized in Table \ref{tab:model}.
 Mean min-cut was found to be highly correlated with degree ($r=0.980$, $p<0.001$),
-so we exclude min-cut to prevent collinearity.
+so we exclude min-cut to prevent collinearity (see Figure \ref{fig:degree-mincut}.
 The high correlation between mean degree and min-cut implies that in most cases
 the minimum $st$-cut is simply the either set of edges from $s$ or the set of edges to $t$.
 The rarity of non-trivial min-cuts suggests that WikiProject coeditor networks have very few central
 bottlenecks and are thus highly decentralized.
 In-degree and out-degree skewness were also highly correlated, so each dependent variable was modeled twice:
 once with in-degree skewness and once with out-degree skewness.
+
+\begin{figure}
+\centering
+\includegraphics[width=2.33in,height=2.33in]{fig-degree-mincut.pdf}
+\caption{
+Min-cut of WikiProject coeditor networks vs. their mean degree.
+\label{fig:degree-mincut}
+}
+\end{figure}
 
 The regression results are consistent whether in-degree or out-degree skewness is used,
 although the out-degree models are slightly more significant when modeling efficiency.
