@@ -1,0 +1,44 @@
+\def\year{2017}\relax
+%File: formatting-instruction.tex
+\documentclass[letterpaper]{article} %DO NOT CHANGE THIS
+\usepackage{aaai17}  %Required
+\usepackage{times}  %Required
+\usepackage{helvet}  %Required
+\usepackage{courier}  %Required
+\usepackage{url}  %Required
+\usepackage{graphicx}  %Required
+\frenchspacing  %Required
+\setlength{\pdfpagewidth}{8.5in}  %Required
+\setlength{\pdfpageheight}{11in}  %Required
+%PDF Info Is Required:
+  \pdfinfo{
+/Title (2017 Formatting Instructions for Authors Using LaTeX)
+/Author (AAAI Press Staff)}
+\setcounter{secnumdepth}{0}
+
+\input{paper-preamble.tex}
+\usepackage{natbib}
+
+ \begin{document}
+% The file aaai.sty is the style file for AAAI Press 
+% proceedings, working notes, and technical reports.
+%
+\title{Network Structure, Efficiency, and Performance in WikiProjects}
+\author{Edward L. Platt \\
+University of Michigan\\
+Ann Arbor, MI\\
+elplatt@umich.edu
+\And
+Daniel M. Romero\\
+University of Michigan\\
+Ann Arbor, MI\\
+drom@umich.edu
+}
+\maketitle
+
+\input{paper-content.tex}
+
+\bibliographystyle{aaai}
+\bibliography{paper}
+
+\end{document}
