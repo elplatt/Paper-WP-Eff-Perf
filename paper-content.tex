@@ -31,24 +31,30 @@ and is particularly interesting for its highly decentralized structure with very
 It is notoriously difficult to organize even small groups without top-down control
 \cite{freeman_tyranny_1972},
 and yet Wikipedia, with millions of self-organized editors,
-has produced a high-quality encyclopedia \cite{giles_internet_2005}.
+has produced a high-quality encyclopedia \cite{giles_internet_2005,keegan_evolution_2017}.
 A better theoretical understanding of projects like Wikipedia is highly desirable as it could
 help inform the design of new collaborative projects.
-We focus on one aspect of organizing a large-scale decentralized collaboration: the network structure.
+We focus on one aspect of organizing a large-scale decentralized collaboration:
+the network structure \cite{newman_structure_2003}.
 If Wikipedia is not structured as a top-down hierarchy, how is it structured?
 And is that structure related to its success?
 
 We approach these questions by analyzing WikiProjects on the English-language Wikipedia.
 WikiProjects are collections of thematically related articles,
 each with their own standards, norms, and processes for evaluating and improving articles.
-We analyze the coeditor networks of these projects: which editors have worked together on at least
-one article?
-In particular, we examine the relationship between the structure of a project's coeditor network
-and the performance and efficiency of its articles.
-Performance represents the ability of a project to get articles to a high quality level,
-while efficiency represents the ability to improve articles of any level quickly.
-We also perform numerical simulations to compare the behavior observed on Wikipedia to the results
-of several variants of a simple networked social learning model.
+We focus on the coeditor networks of these projects:
+which editors have edited at least one article in common?
+When measuring the quality of collaborative projects,
+there are at least two distinct measures to consider.
+The first measure is short-term:
+how effective a unit of work is at improving
+the collaboration's output,
+which we call {\em efficiency}.
+The other measure is long-term:
+the highest quality typically reached by an output,
+which we call {\em performance}.
+These two terms are often used interchangably,
+but we find it fruitful to distinguish between the two concepts.
 
 Our main findings are:
 \begin{itemize}
@@ -56,7 +62,7 @@ Our main findings are:
 \item Short path lengths tend to be associated with higher performance, consistent with a conformity-based learning strategy;
 \item Structural inequality, as measured by degree skewness, is associated with lower performance,
 and lower efficiency at reaching the highest quality levels;
-\item Using numerical simulations, we show that the performance and efficiency of some networked learning strategies depends on degree.
+\item Using numerical simulations, we show that the performance and efficiency of some networked learning strategies depends on degree distribution.
 \end{itemize}
 
 The rest of the paper is structured as follows.
@@ -69,19 +75,22 @@ and Section \ref{sec:conclusion} concludes.
 \section{Background and Related Work}
 \label{sec:background}
 
-In the field of social learning,
-much research has been done to understand how groups of agents
-can solve problems collaboratively.
-In {\em networked social learning}, agents are represented by nodes on a network
+The field of social learning studies how
+groups of interacting agents
+can collaborate to solve complex problems.
+In {\em networked social learning},
+agents are represented by nodes on a network
 and can only interact with their neighbors.
 Social learning tasks can be divided into cases where agents have {\em generated signals}
 (independently noisy estimates of a true value)
 and those where agents have {\em interpreted signals}
-(solutions based on different internal models of available data)
+(solutions based on different selections of available data)
 \cite{hong_interpreted_2009}.
+The behavior of individual agents is described by their
+{\em social learning strategy}.
 For generated signals,
-a naive Bayesian approach converges to the truth when certain conditions
-on the network's degree distribution are met,
+a naive Bayesian approach converges to the truth
+when all agents have the same degree,
 while the speed of convergence depends on the {\em spectral gap}
 between the two largest eigenvalues of the network's adjacency matrix
 \cite{degroot_reaching_1974,golub_naive_2010}.
@@ -89,11 +98,16 @@ Complex social learning tasks can also be modeled as the problem
 of maximizing an objective function with many local maxima,
 referred to as a {\em rugged landscape}
 \cite{lazer_network_2007,mason_propagation_2008,mason_collaborative_2012,grim_scientific_2013,barkoczi_social_2016}.
-Numerical simulations have shown that efficient networks (those with short paths between nodes)
-can allow less exploration of possible solutions,
-resulting in a fast convergence to a non-optimal solution \cite{mason_propagation_2008,grim_scientific_2013}.
-However, when conformity-based social learning strategies are used, efficient networks can outperform
+Numerical simulations have shown that efficient networks
+(those with short paths between nodes)
+can result in faster convergence at the cost of a less optimal solution,
+due to less time for exploration
+\cite{mason_propagation_2008,grim_scientific_2013}.
+However, when conformity-based social learning strategies are used,
+efficient networks can sometimes find more optimal solutions than
 inefficient ones \cite{barkoczi_social_2016}.
+The above tradeoff between convergence time, optimality, and learning strategy
+motivates the distinction between performance and efficiency in the current study.
 
 Lab-based experiments on networked collaboration
 suggest a complex interaction between network topology,
@@ -128,7 +142,7 @@ The process of decision-making is sometimes divided into
 ``talking'' and ``voting'' stages.
 While hierarchical representative democracy sometimes improves the outcome
 of ``talk,'' it weakens the result of the Condoret jury theorem for voting
-\cite{list_epistemic_2001}.
+\cite{}.
 Robert Michels proposed the ``iron law of oligarchy,''
 \cite{michels_political_1999} which states that
 the earlier members of a group will, over time, gain disproportionate
@@ -154,8 +168,9 @@ decision-making,
 making it an excellent place to study the role of network structure in
 large-scale collaboration.
 
-Research on digital communities has also examined some non-network factors
-influencing the quality of decisions and collaborative work.
+Research on digital communities has also examined the role of factors
+such as diversity and inequality
+in collaborative work and decision-making.
 Using a simulation model, Hong and Page \cite{hong_groups_2004} found that
 diverse groups can outperform groups composed of the best individual
 problem-solvers.
@@ -169,8 +184,9 @@ holes'' between groups \mbox{\cite{granovetter_strength_1973}}.
 There is some evidence that groups with high structural inequality,
 as evidenced by highly-skewed degree distributions,
 perform worse on collaborative tasks \mbox{\cite{kearns_experiments_2012}}.
-In the present project, we examine the effect of structural inequality
-on collaboration in Wikipedia.
+In the present project, we use co-editor network degree skewness to
+examine the relationships between structural inequality,
+project performance, and project efficiency.
 
 Several studies have examined the role of community in the specific context
 of Wikipedia.
@@ -185,6 +201,10 @@ effect on the quality of Wikipedia articles \cite{kittur_harnessing_2008}.
 Both explicit and implicit coordination result in higher quality articles,
 with explicit coordination being especially central in the early life of an
 article.
+Looking specifically at Wikipedia policies determined by editor consenus,
+Keegan and Fiesler found a trend
+from flexibile rule-making towards less flexible maintenance and deliberation
+\cite{keegan_evolution_2017}.
 
 Across the broad range of work on collaboration and related topics,
 a few key themes emerge.
