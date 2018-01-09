@@ -140,9 +140,10 @@ describe how individuals can use majority voting to improve their
 decision-making ability.
 The process of decision-making is sometimes divided into
 ``talking'' and ``voting'' stages.
-While hierarchical representative democracy sometimes improves the outcome
-of ``talk,'' it weakens the result of the Condoret jury theorem for voting
-\cite{}.
+% Not yet published
+%While hierarchical representative democracy sometimes improves the outcome
+%of ``talk,'' it weakens the result of the Condoret jury theorem for voting
+%\cite{}.
 Robert Michels proposed the ``iron law of oligarchy,''
 \cite{michels_political_1999} which states that
 the earlier members of a group will, over time, gain disproportionate
@@ -206,17 +207,22 @@ Keegan and Fiesler found a trend
 from flexibile rule-making towards less flexible maintenance and deliberation
 \cite{keegan_evolution_2017}.
 
-Across the broad range of work on collaboration and related topics,
+Across the broad range of work discussed above,
 a few key themes emerge.
 The efficiency and performance of collaborations are important considerations
-and vary depending on both network structure and type of task.
-While social learning predicts no relationship between the two,
-contagion-style innovation models predict a trade-off.
+and vary depending on both network structure and type of task
+\cite{kearns_experiments_2012}.
+While generated signal models of social learning predict no relationship between the two
+\cite{golub_naive_2010},
+contagion-style innovation models predict a trade-off
+\cite{mason_collaborative_2012,barkoczi_social_2016}.
 Such a trade-off has been observed in simulations and lab experiments on
-collaboration.
+collaboration
+\cite{kearns_experiments_2012,grim_scientific_2013}.
+
 In this project, I will investigate several gaps in the existing literature.
 In much of the existing literature,
-degree distribution correlate to performance.
+degree distribution correlates to performance.
 But aside from the naive Bayes case in social learning, it is unknown whether
 the correlation is explained best by degree or by another structural property
 correlated with degree.
@@ -228,13 +234,74 @@ Unlike artificial networks, the structural properties of these naturally-occurri
 networks can vary independently, making it easier to isolate individual
 network properties that correlate with outcome variables.
 This project will also examine Wikipedia for evidence that structural
-inequality (in the form of skewed
-degree distributions) has a detrimental effect on performance,
+inequality (in the form of skewed degree distributions)
+has relationship with performance,
 as has been observed in lab experiments
-\mbox{\cite{kearns_experiments_2012}}.
+\cite{kearns_experiments_2012}.
 
 \section{WikiProjects}
 \label{sec:wp}
+
+Many articles on Wikipedia belong to one or more WikiProject.
+WikiProjects are groups of thematically-related articles
+(e.g., articles related to Philosophy).
+Information about the an article's associated WikiProjects
+can be viewed on that
+article's talk page (Figure \ref{fig:knitting}).
+Each WikiProject has its own page and talk page.
+These pages contain information about community norms within the project
+as well as discussions about individual articles.
+WikiProjects are thus distinct communities, with distinct norms and processes.
+These communities are the fundamental units of analysis in the present paper.
+
+One of the main roles of a WikiProject is to evaluate the quality of its articles.
+Quality assessments are made through consensus-based deliberation on the WikiProject
+talk page.
+Within a WikiProject,
+assessments are typically made using the following {\em assessment classes}
+(in order of increasing quality):
+Stub, Start, C, B, A.
+Different WikiProjects can assign different quality assessments to the same
+article.
+Differences between quality assessments could reflect different quality standards,
+different grading systems, different responsiveness to changes in an article, etc.
+
+In addition to the above assessment classes, articles on Wikipedia can be tagged as
+"good article" (GA) or "featured article" (FA) quality.
+FA and GA determinations are made using a Wikipedia-wide consensus,
+in parallel to any WikiProject-based evaluations.
+FA articles are ``the best articles Wikipedia has to offer''
+\cite{}.
+GA articles meet ``a core set of editorial standards`` but are ``not featured article quality''
+\cite{}.
+When an article is assigned GA or FA status,
+WikiProject quality assessments are often updated to reflect that status.
+For example, the article {\em Mewtwo} was assessed as GA status on October 5,
+2009 and shortly afterwards
+its quality assessment was changed from B to GA within both
+{\em WikiProject Pok\'emon} and
+{\em WikiProject Video Games}.
+This example also illustrates a quirk of Wikipedia norms:
+very often, articles pass to GA or FA directly from B, skipping A.
+The majority of WikiProjects rarely use the A class quality assessment.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=3in]{fig-knitting.png}
+\caption{
+Templates appearing at the top of the English-language Wikipedia talk page
+for {\em Knitting}.
+The article belongs to both {\em WikiProject Technology} and
+{\em WikiProject Textile Arts}.
+Both WikiProjects have assessed the article as B-class quality.
+The article has also been nominated for both good article (GA) and
+featured article (FA) status,
+but after a consensus-based deliberation open to all Wikipedia editors,
+was not assigned GA or FA status.
+\label{fig:knitting}
+}
+\end{center}
+\end{figure}
 
 \subsection{Data}
 
@@ -242,51 +309,72 @@ Our analysis combines multiple data sets from the English-language Wikipedia.
 For information about edit history, we used a publicly-available data set containing
 metadata about all edits from July 12, 2006 to December 2, 2015.
 To get the rating history of each article,
-we wrote a script to scrape the daily logs produced by WP 1.0 Bot for each WikiProject
+we wrote a script to scrape the daily logs produced by WP 1.0 Bot for
+all unique WikiProjects (2279)
 between May 4, 2006 and December 2, 2015.
 Finally, we used a publicly-available log of page events (including rename events)
 to reconstruct the unique identifier for each article title mentioned in the rating history logs.
 
 \subsection{Efficiency and Performance}
 
-To model the relationship between performance, efficiency, and network structure,
-we must have a way to quantify performance and efficiency.
-We define these quantities on a per-WikiProject basis to enable comparisons across different
-projects.
-Our definitions are inspired by work modeling collective problem-solving as an optimization
-problem \cite{lazer_network_2007,mason_propagation_2008,mason_collaborative_2012,grim_scientific_2013,barkoczi_social_2016}.
-The efficiency quantifies how quickly a solution is reached,
-while the performance quantifies how good the eventual solution is.
+When individuals collaborate to solve a problem,
+there are many ways to gauge their success.
+Two possibilities are
+1. how quickly they find a solution, and
+2. how good their solution is.
+Evidence from numerical simulations
+\cite{lazer_network_2007,mason_propagation_2008,mason_collaborative_2012,grim_scientific_2013,barkoczi_social_2016},
+lab studies \cite{kearns_experiments_2012},
+and field observations \cite{gentry_consensus_1982}
+all suggest a trade-off between performance and efficiency.
+While common, this trade-off is not absolute,
+suggesting it is sometimes possible to simultaneously increase
+performance and efficiency.
+The identification of factors associated with both higher efficiency
+and higher performance has obvious practical importance.
+In this paper, we focus specifically on how network structure
+relates to efficiency and performance within WikiProjects.
 
-For a WikiProject, efficiency quantifies how quickly project participants can improve the
-assessed quality of an article.
+For a WikiProject, efficiency quantifies how much participants can raise the
+assessed quality of an article for a fixed amount of work.
+We measure work by the number of revisions made.
 Quality assessments are made through consensus of the project participants themselves,
 so different projects can have different standards and practices for assessing article quality.
 So the efficiency is not a measure of how quickly some objective measure of quality improves,
 but rather of how quickly the project participants can reach consensus on the improvements that
 need to be made and make those improvements.
-Because our definition relies on assessment transitions, we define efficiency variables for
+Because our definition relies on assessment transitions,
+we must define efficiency variables for
 each of the project-level quality assessments: A, B, and C.
-If $T(W,G)$ is the set of transitions in project $W$ from below grade $G$ to grade $G$ (or higher),
-then we first quantify the efficiency $E(W,G)$ as the inverse of the mean number of revisions
+For a particular grade $G$,
+we desire our definition of efficiency to meet the following conditions:
+\begin{itemize}
+\item{Strictly increasing in the number of articles reaching grade $G$ (with revision count fixed);}
+\item{Strictly decreasing in the number of revisions (with transition count fixed);}
+\item{Independent of WikiProject size: not affected by adding an article if that article's transition/revision ratio is equal to the efficiency.}
+\end{itemize}
+
+We now define an efficiency measure which meets the above criteria.
+Let $T(W,G)$ be the set of article assessment transitions from below grade $G$
+to grade $G$ or higher in project $W$.
+Let $N(W,G)$ be the number of articles in project $W$ which ever transition
+from below grade $G$ to grade $G$ (or higher).
+Let $r(t)$ be the number of article revisions since its previous grade transition,
+and let $g(t)$ be the number of grade levels crossed by transition $t$.
+We quantify the efficiency $E(W,G)$ as the inverse of the mean number of revisions
 per transition:
 \beq
 E(W,G)
 &=&
 \left[
 \frac{1}{
-|T(W,G)|
+N(W,G)
 }
 \sum_{t \in T(W,G)} \frac{r(t)}{g(t)}
 \right]^{-1},
 \eeq
-where $r(t)$ is the number of revisions since the previous grade transition,
-and $g(t)$ is the number of grade levels crossed by transition $t$.
-The $g(t)$ term is added because an assessments often raise article quality by several
-grades, in which case the revisions are divided evenly between all grade levels achieved.
-It is also worth noting that we measure efficiency in terms of revisions made,
-rather than time passed.
-We focus on revisions because the amount of work done on an article varies widely from day to day.
+Where the $g(t)$ term is present because a assessments sometimes raise article quality by several
+grades, in which case we divide the revisions evenly between all grade levels achieved.
 
 For performance, we wish to quantify how good articles tend to be when they reach a stable state.
 Measuring performance is difficult for several reasons:
@@ -300,7 +388,9 @@ The criteria for these statuses are consistent across all of Wikipedia,
 and any editor can participate in the discussion and decision to award good or featured
 status.
 In other words, the good and featured statuses are more objective than per-project assessments.
-Our performance measure $P(W)$ is just the percentage of articles in project $W$ which have reached
+
+Our performance measure $P(W)$ is defined simply as
+the percentage of articles in project $W$ which have reached
 good or featured status:
 \beq
 P(W) &=& \frac{f(W) + g(W)}{n(W)},
@@ -315,20 +405,45 @@ a unimodal distribution with low skew (see Figure \ref{fig:eff-perf-hist}).
 
 \subsection{Coeditor Networks}
 
-For each WikiProject, we compare the efficiency and performance measures to the structural
-properties of its coeditor network.
-The {\em coeditor network} of a WikiProject consists of nodes representing editors.
-Two editors are connected when they have both edited the same article or talk page.
+We would like to determine how the social network structure of
+Wikipedia--the pattern of who interacts with whom--relates to
+efficiency and performance.
+There are several types of interactions we could focus on,
+including:
+coediting, user talk messages, and talk page replies.
+We choose to focus on coediting: when two editors have made changes to the
+same article or talk page.
+While editors can communicate directly through user talk messages,
+the number of such messages is small compared to the number of edits to article
+and talk pages.
+We also could have considered direct replies between editors on article talk
+pages, but these replies are typically seen (and intended to be seen)
+by everyone reading the talk page,
+and are part of larger conversations.
+When an editor views a page,
+they are potentially viewing content from and interactions
+between all editors who came before them,
+motivating our choice to focus on the social network structure of
+coeditors.
+
+The {\em coeditor network} of a WikiProject consists of nodes representing editors,
+and edges connecting any editors who have edited the same article.
 The edges are directed, with the direction representing the direction of
 {\em plausible information flow};
-an edge from editor A to editor B exists if A edited an article and then B edited the same article at
+an edge from Alice to Bob exists if Alice edited an article and then Bob edited the same article at
 a later time.
-Edges can exist in both directions e.g., if an article was edited first by A, then by B, and again by A.
-For simplicity, we assign all edges unit weight.
-We focus on three structural properties: degree, characteristic path length, and min-cut.
+Edges can exist in both directions e.g.,
+if an article was edited first by Alice, then by Bob, and again by Alice.
+We make the simplifying assumption of unit weight for all edges.
+We focus on three structural properties:
+degree, characteristic path length, and min-cut.
+Degree and characteristic path length have been shown to correlate with
+performance and efficiency in some social learning settings
+\cite{golub_naive_2010,mason_propagation_2008,grim_scientific_2013},
+while min-cut can be interpreted as a measure of decentralization,
+a key property of Wikipedia.
 
-The node degree distribution is the simplest structural property we analyze for WikiProject
-coeditor networks.
+The degree distribution is the simplest network property we analyze.
 The in-degree (out-degree) of a node is the number of edges to (from) that node.
 Taking the average of either in-degree or out-degree gives the same value:
 the {\em mean degree} of the network.
