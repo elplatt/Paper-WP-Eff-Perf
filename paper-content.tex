@@ -398,11 +398,6 @@ P(W) &=& \frac{f(W) + g(W)}{n(W)},
 where $f(W)$ and $g(W)$ are the numbered of featured and good articles respectively,
 and $n(W)$ is the total number of articles.
 
-Empirically, we find that both efficiency and performance are highly right-skewed,
-with a small number of projects having values much higher than the average.
-After log-transforming the values, both the efficiency and the performance have
-a unimodal distribution with low skew (see Figure \ref{fig:eff-perf-hist}).
-
 \subsection{Coeditor Networks}
 
 We would like to determine how the social network structure of
@@ -441,7 +436,8 @@ Degree and characteristic path length have been shown to correlate with
 performance and efficiency in some social learning settings
 \cite{golub_naive_2010,mason_propagation_2008,grim_scientific_2013},
 while min-cut can be interpreted as a measure of decentralization,
-a key property of Wikipedia.
+common feature of peer-produced communities such as Wikipedia
+\cite{benkler_wealth_2006}.
 
 The degree distribution is the simplest network property we analyze.
 The in-degree (out-degree) of a node is the number of edges to (from) that node.
@@ -455,10 +451,13 @@ while a small positive value implies that the editors having the most collaborat
 don't have many more than a typical editor.
 
 We also calculate the characteristic path length for each WikiProject coeditor network.
-The {\em distance} from editor A to editor B is the length of the shortest path from A to B.
-The {\em characteristic path length} is the mean distance between all editor pairs.
-If no path exists between two editors, we exclude that pair from the mean.
-For brevity, we will simply refer to this quantity as the {\em path length}.
+The {\em distance} from node $s$ to node $t$ is the distance of the shortest path
+from $s$ to $t$.
+The {\em characteristic path length} (or just {\em path length} for brevity)
+is the mean distance between all editor pairs,
+excluding unconnected pairs.
+To account for unconnected pairs, we also measure the {\em connected fraction}
+of all possible edge pairs.
 The path length represents how quickly information can move through the network.
 Networks with longer paths require more interactions for information to propagate through
 the network,
@@ -494,10 +493,42 @@ We estimated the error due to sampling by determining true values for a medium-s
 and calculating error as a function of sample-size.
 Sample sizes were chosen such that relative error was below 10\%.
 Even with sampling, however, it was impractical to calculate these properties for the largest projects,
-so we exclude them from the analysis.
+so we exclude the 183 largest projects from the analysis.
 To control for bias in project size, we include several size-related variables in our models.
 
-\subsection{Regression Models}
+\subsection{Empirical Results}
+
+We find that both efficiency and performance are highly right-skewed,
+with a small number of projects having values much higher than the average.
+After log-transforming the values, both the efficiency and the performance have
+a unimodal distribution with low skew (see Figure \ref{fig:eff-perf-hist}).
+
+We also find that mean min-cut is highly correlated with degree ($r=0.980$, $p<0.001$),
+so we exclude min-cut from regression models to prevent collinearity (see Figure \ref{fig:degree-mincut}).
+The high correlation between mean degree and min-cut implies that in most cases
+the minimum $st$-cut is simply the either set of edges from $s$ or the set of edges to $t$.
+The rarity of non-trivial min-cuts suggests that WikiProject coeditor networks have very few central
+bottlenecks and are thus highly decentralized.
+
+\begin{figure}
+\centering
+\includegraphics[width=3in,height=3in]{fig-eff-perf-hist.pdf}
+\caption{
+Histograms of WikiProject efficiency and performance.
+Both measures are highly right-skewed, but form unimodal distributions
+with low skewness after log transformation.
+\label{fig:eff-perf-hist}
+}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=2.33in,height=2.33in]{fig-degree-mincut.pdf}
+\caption{
+Min-cut of WikiProject coeditor networks vs. their mean degree.
+\label{fig:degree-mincut}
+}
+\end{figure}
 
 \begin{table*}[!ht]
 \small
@@ -573,49 +604,37 @@ R$^2_{adj}$                    & 0.37            & 0.37
 \end{tablenotes}
 \end{table*}
 
-We model performance and efficiency in WikiProjects using ordinary least-squares linear regression.
+To study the relationship between network structure, efficiency, and performance,
+we model the performance and efficiency of WikiProjects using ordinary least-squares linear regression.
 Each WikiProject is taken as a single observation.
 The models include each project's coeditor network properties as independent variables.
-We also include several project-level variables to control for confounding factors.
-The C-efficiency is included in the model for performance to control for the presence of articles
-that are actively being improved.
-Projects with lower efficiency will have more works-in-progress and could have an artificially low
-performance without controlling for efficiency.
-Some variables are log-transformed to reduce heteroscedasticity.
+We also include several project-level variables to control for confounding factors,
+described below.
+\begin{description}
+\item[C-efficiency] Quantifies how quickly a WikiProject improves low-quality articles.
+\item[Connected fraction] Fraction of coeditor pairs connected by a path.
+\item[Mean editors/article] Mean number of editors collaborating on each article in a WikiProject.
+\item[Article count] Total number of articles in the WikiProject.
+\item[Editor count] Total number of editors working on articles within a WikiProject.
+\item[Revision count] Total number of revisions to articles in a WikiProject.
+\item[First assessment] Timesamp of first assessment; a measure of how long a WikiProject has been active.
+\item[Mean article age] Mean age of articles within a WikiProject.
+\item[Mean similarity] Mean Jaccard similarity (by article) with other WikiProjects; a measure of topical complexity.
+\end{description}
 
 Our models are summarized in Table \ref{tab:model}.
-Mean min-cut was found to be highly correlated with degree ($r=0.980$, $p<0.001$),
-so we exclude min-cut to prevent collinearity (see Figure \ref{fig:degree-mincut}.
-The high correlation between mean degree and min-cut implies that in most cases
-the minimum $st$-cut is simply the either set of edges from $s$ or the set of edges to $t$.
-The rarity of non-trivial min-cuts suggests that WikiProject coeditor networks have very few central
-bottlenecks and are thus highly decentralized.
-In-degree and out-degree skewness were also highly correlated, so each dependent variable was modeled twice:
-once with in-degree skewness and once with out-degree skewness.
+Min-cut is excluded from all models to avoid collinearity,
+as it is highly correlated with degree.
+In-degree and out-degree skewness were also highly correlated,
+so we only include out-degree skewness in the models.
+Some variables are log-transformed.
+To test the robustness of our results,
+we also computed models using cube root instead of logarithmic transformations,
+as well as using only top-importance and high-importance articles.
+These robustness check yielded qualitatively similar results for all variables,
+except for degree-skewness, which had an inconsistent sign across models.
 
-\begin{figure}
-\centering
-\includegraphics[width=3in,height=3in]{fig-eff-perf-hist.pdf}
-\caption{
-Histograms of WikiProject efficiency and performance.
-Both measures are highly right-skewed, but form unimodal distributions
-with low skewness after log transformation.
-\label{fig:eff-perf-hist}
-}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=2.33in,height=2.33in]{fig-degree-mincut.pdf}
-\caption{
-Min-cut of WikiProject coeditor networks vs. their mean degree.
-\label{fig:degree-mincut}
-}
-\end{figure}
-
-The regression results are consistent whether in-degree or out-degree skewness is used,
-although the out-degree models are slightly more significant when modeling efficiency.
-We also see that B-efficiency and C-efficiency have very similar models, but that A-efficiency behaves
+We see that B-efficiency and C-efficiency have very similar models, but that A-efficiency behaves
 differently in its dependence on degree skewness and connectivity.
 The different behavior of A-efficiency is likely explained by the observation that the A-Class quality is
 infrequently used in practice, meaning that the quality level is usually achieved when an article is rated
