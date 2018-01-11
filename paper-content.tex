@@ -705,23 +705,21 @@ agents thus seek to find a bit string $S$ that achieves the largest $F(S)$.
 
 In a typical social learning model,
 a set of agents each maintain an estimate of the optimal state
-and update that estimate based on information available from other agents,
+and iteratively update that estimate based on information available from other agents,
 according to some {\em learning strategy}.
 In networked social learning,
 agents are associated with the nodes of a network and share information
 only with their neighbors.
-
-For a particular problem-solving trial, agents each store their current favored solution and
-apply learning strategies to iteratively improve those solutions.
-We define their efficiency and performance in terms of the mean solution values for each time step.
+We define efficiency and performance in terms of the solution values for each time step
+(averaged over many trials).
 We define the performance to be the mean solution value after the process has converged,
 while the efficiency is the reciprocal of the number of steps required to converge.
 We measure the time to convergence as the number of steps required to reach 99\% of the maximum
 mean solution value.
 
-While the above model is often used to study collaboration,
-several key properties of real-world collaborations are missing
-without additional constraints.
+Without additional constraints,
+the above model is missing
+several key properties of real-world collaborations.
 In designing our agent-based model, we paid attention to the
 following properties, motivated by real-world collaborations.
 \begin{description}
@@ -738,7 +736,7 @@ and agent preferences are based on local modifications to that state.
 \subsection{Concern-Based Networks}
 
 On Wikipedia, editors interact by editing articles and talk pages.
-Thus, the editors who interact with each other are exactly those who care about the same pages.
+Thus, the editors who interact with each other are exactly those who care about the same content.
 Rather than using arbitrary networks,
 we devise a network structure inspired by the above observation.
 We do so by associating agents with particular loci in the NK model.
@@ -758,45 +756,64 @@ With no rewiring, the duplication process creates a high overlap between agent c
 This overlap results in redundant links to a small number of agents,
 rather than unique links to a large number of agents,
 and therefore to an agent-agent network with small average degree.
-By randomly rewiring the agent concerns, the redundancy is reduced and the average degree of
-the agent-agent network is increased.
+By randomly rewiring the agent concerns, the redundancy is reduced
+and the average degree of the agent-agent network is increased.
 
 \subsection{Networked Learning Strategies}
 
-Agents can engage in individual learning by applying a hill-climbing algorithm to their current solution.
+Learning strategies determine how agents update their preferences based on
+available information.
+Agents can engage in individual learning \cite{barkoczi_social_2016}
+by applying a hill-climbing algorithm to their current solution.
 In each iteration, one bit of the NK solution string is flipped to maximize the solution value.
-If no change improves the value, the original solution is kept.
-Agents can also incorporate information from any other agents they are connected to by a network edge.
+If no change improves the value, the original solution is kept
+The above strategy relies only on rankings of states,
+satisfying the unknown objective assumption.
+However, it does rely on information about the entire state,
+violating the limited concern assumption.
+In order to satisfy this assumption,
+we also define a local variant
+in which only a subset of bits in the NK solution string are considered.
+This variant reflects a more realistic style of collaboration,
+in which individual agents focus on sub-problems.
+
+In social learning,
+agents can also incorporate information from
+other agents they are connected to by a network edge.
 While individual learning always converges to the local maximum relative to the starting point,
 social learning strategies allow agents to ``jump'' to drastically different solutions with higher local maxima.
-
-We use both the conformity and best-neighbor strategy from \cite{barkoczi_social_2016}.
-In the {\em best-neighbor} strategy, each agent compares its solution to the those of all its
+In our model, we use both the conformity and best-neighbor strategies from \cite{barkoczi_social_2016}.
+In the {\em best-neighbor} strategy, each agent compares its solution to a sample of its
 neighbors, and chooses the solution with the highest value.
+In order to compare solutions between neighbors,
+the exact value of the objective function must be known for each solution,
+so this strategy does not satisfy the unknown objective assumption
+or the limited concern assumption.
 In the {\em conformity} strategy, agents simply choose the most common solution among their neighbors
 (ties are broken uniformly at random).
+This strategy does not rely on solution value at all, so clearly satisfies the
+unknown objective assumption,
+but it fails to satisfy the limited concern assumption because it updates all
+bits of the NK solution.
 In both cases, a single iteration of individual learning is performed after each social learning
 iteration.
+Because each agent maintains a separate estimate of the solution,
+neither of these strategies satisfies the single source of truth assumption.
 
-We also introduce local variants of the above strategies.
-The local variants are meant to reflect a more realistic collaboration setting where
-individual agents focus on sub-problems.
-In these variants, individual learning takes place on a subset of NK loci.
-Each agent is associated with an NK locus and the loci its value depends on.
-These loci are the agent's {\em concern},
-and are the only ones used for individual learning.
-Similarly, in the consensus strategy, an NK locus's value is determined only by the agents
-concerned with that locus, rather than all agents.
+\subsection{Local Majority Strategy}
 
-\subsection{Consensus Strategy}
-
-We introduce a new strategy, which we call the consensus strategy.
-In {\em consensus}, agents first apply individual learning.
-Next, a consensus solution is constructed from each agent's individual solution by setting
-each NK locus's state to its most common value among the agent's individual solutions.
-The result of this process is that agents accept a single consensus solution at each iteration,
-which forms the basis for future individual learning.
-We include this strategy because of its similarity to the editing process of Wikipedia:
+In order to satisfy the single source of truth assumption,
+we introduce a new strategy, which we call the local majority strategy.
+In {\em local majority}, agents begin with exactly the same starting state,
+and apply individual learning to their concern to generate
+possible improvements to the solution.
+Next, a new solution is constructed by considering each locus of the NK solution
+individually.
+Every agent concerned with a bit votes for its state based on their preferred
+new solution and the majority state is chosen.
+The result of this process is that all agents agree on a single improved state,
+which forms the basis for the next iteration.
+This strategy more realistically reflects collaborations like Wikipedia:
 at any given time, a Wikipedia article has a single state, determined by consensus,
 but editors may have differing opinions on how to improve that article.
 
