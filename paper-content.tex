@@ -655,33 +655,113 @@ We also observe that high degree skewness is correlated with lower performance a
 suggesting that articles in projects with decentralized coeditor networks reach featured or good status
 more efficiently, and reach higher quality ratings in general.
 
-\section{Numerical Simulations}
+\section{Agent-Based Model}
 \label{sec:sim}
 
-We use numerical simulations to determine whether simple models can reproduce the behavior we
-observe in WikiProject coeditor networks.
-Following existing numerical work on networked social learning
-\cite{lazer_network_2007,mason_propagation_2008,mason_collaborative_2012,barkoczi_social_2016},
-we use the NK model \cite{kauffman_towards_1987} to create NP-hard, nonlinear optimization problems
-and evaluate the effects of network structure and learning strategy on a group's ability to
-find solution to those problems.
-We are particularly interested in the effect of degree on the efficiency and performance of a group
-of networked problem-solving agents.
+In addition to our empirical study,
+we use a simple agent-based model of collaboration to better understand
+the relationship between node degree, efficiency, and performance.
+Numerical models allow us to determine the effect of changing a single
+variable (e.g., network strucutre, learning strategy),
+which is impractical in the empirical setting.
+It is important to note that the goal of our model is not to create an
+accurate simulation of Wikipedia or any other specific platform.
+Rather, our goal is to simulate collaboration in the abstract so that we can
+examine the results of altering various assumptions and parameters.
 
-In the NK model, N loci each have a binary state and value determined by a random lookup table mapping its state
-and the state of another K loci to a real number in $[0,1]$.
-We report results for the case $N=250$, $K=7$.
-Solutions thus take the form of an N-bit string, and the value of the solution is the mean over all loci values.
+Past work in the field of social learning typically models collaboration
+as an optimization problem:
+finding a state of the world which maximizes some objective function
+\cite{lazer_network_2007,mason_propagation_2008,mason_collaborative_2012,barkoczi_social_2016}.
+Wikipedia itself can be regarded as an optimization problem.
+On Wikipedia, editors are generally seeking to improve the quality of articles
+and have some personal preference over possible states of an article.
+When editors do not agree on the optimal state of an article,
+the conflict is resolved through a consensus-based deliberation.
+This consensus process can be regarded as a {\em social choice function}
+\cite{arrow_social_2012,brandt_computational_2012}
+which maps individual preferences to community preferences.
+Wikipedia can thus be thought of as a group of editors with individual preferences
+for article states,
+collaborating to optimize articles according to community preferences.
+
+To simulate collaboration, we need a model problem for collaborators to solve.
+Following existing literature on social learning,
+we use the NK model \cite{kauffman_towards_1987}
+to create NP-hard, nonlinear optimization problems.
+The NK model produces an objective function with a
+{\em rugged landscape}, i.e., many local optima.
+The ruggedness of the model can be tuned through the parameters $N$ and $K$.
+Formally, the NK model produces a function $F$ mapping a binary string $S$ of length
+$N$ to a real value in $[0,1]$.
+The model consists of $N$ {\em loci}, with locus $i$ having a binary state $S_i$
+and a value $f_i(S)$ dependent on its own state
+and on the state of $K$ random other loci.
+The functions $f_i(S)$ are created by selecting a random value in $[0,1]$ for
+each possible state of locus $i$ and its $K$ neighbors.
+The value of the model $F(S)$ is the mean of all locus values $f_i(S)$.
+In our models,
+agents thus seek to find a bit string $S$ that achieves the largest $F(S)$.
+
+In a typical social learning model,
+a set of agents each maintain an estimate of the optimal state
+and update that estimate based on information available from other agents,
+according to some {\em learning strategy}.
+In networked social learning,
+agents are associated with the nodes of a network and share information
+only with their neighbors.
 
 For a particular problem-solving trial, agents each store their current favored solution and
-apply learning strategies to iteratively improve those solutions. We define their
-efficiency and performance in terms of the mean solution values for each time step.
+apply learning strategies to iteratively improve those solutions.
+We define their efficiency and performance in terms of the mean solution values for each time step.
 We define the performance to be the mean solution value after the process has converged,
 while the efficiency is the reciprocal of the number of steps required to converge.
 We measure the time to convergence as the number of steps required to reach 99\% of the maximum
 mean solution value.
 
-\subsection{Learning Strategies}
+While the above model is often used to study collaboration,
+several key properties of real-world collaborations are missing
+without additional constraints.
+In designing our agent-based model, we paid attention to the
+following properties, motivated by real-world collaborations.
+\begin{description}
+\item[Limited concern] Agents are concerned only with a subset of the entire
+state when making decisions and determining preferences.
+\item[Concern-based network] Agents interact with other agents who share a
+common concern over some subset of the state.
+\item[Unknown objective] Agents can rank states in order of preference,
+but do not have access to the objective function.
+\item[Single source of truth] At any given time, the system is in a single state
+and agent preferences are based on local modifications to that state.
+\end{description}
+
+\subsection{Concern-Based Networks}
+
+On Wikipedia, editors interact by editing articles and talk pages.
+Thus, the editors who interact with each other are exactly those who care about the same pages.
+Rather than using arbitrary networks,
+we devise a network structure inspired by the above observation.
+We do so by associating agents with particular loci in the NK model.
+We also wish to study the effect of varying network degree,
+which we achieve through a rewiring process described below.
+
+Our concern-based networks are generated directly from the structure of the NK model.
+The value of each NK locus depends on its own state and the state of $K$ other loci.
+For each locus, we define an agent and assign these $K+1$ loci as its concern.
+Next, an agent-agent co-affiliation network is created by connecting two agents if they share at least
+one locus in their concerns.
+This process is analogous to our construction of WikiProject coeditor networks.
+
+To create a tunable degree, we duplicate each agent and its concern,
+then randomly rewire a fraction of agent concerns before creating the agent-agent network.
+With no rewiring, the duplication process creates a high overlap between agent concerns.
+This overlap results in redundant links to a small number of agents,
+rather than unique links to a large number of agents,
+and therefore to an agent-agent network with small average degree.
+By randomly rewiring the agent concerns, the redundancy is reduced and the average degree of
+the agent-agent network is increased.
+
+\subsection{Networked Learning Strategies}
 
 Agents can engage in individual learning by applying a hill-climbing algorithm to their current solution.
 In each iteration, one bit of the NK solution string is flipped to maximize the solution value.
@@ -698,16 +778,6 @@ In the {\em conformity} strategy, agents simply choose the most common solution 
 In both cases, a single iteration of individual learning is performed after each social learning
 iteration.
 
-We introduce a new strategy, which we call the consensus strategy.
-In {\em consensus}, agents first apply individual learning.
-Next, a consensus solution is constructed from each agent's individual solution by setting
-each NK locus's state to its most common value among the agent's individual solutions.
-The result of this process is that agents accept a single consensus solution at each iteration,
-which forms the basis for future individual learning.
-We include this strategy because of its similarity to the editing process of Wikipedia:
-at any given time, a Wikipedia article has a single state, determined by consensus,
-but editors may have differing opinions on how to improve that article.
-
 We also introduce local variants of the above strategies.
 The local variants are meant to reflect a more realistic collaboration setting where
 individual agents focus on sub-problems.
@@ -718,28 +788,17 @@ and are the only ones used for individual learning.
 Similarly, in the consensus strategy, an NK locus's value is determined only by the agents
 concerned with that locus, rather than all agents.
 
-\subsection{Network family}
+\subsection{Consensus Strategy}
 
-The agent networks used in our simulations vary from those in previous work in two important ways:
-they reflect the structure of the NK model being optimized,
-and they allow the degree to be tuned with minimal change to the mean path length.
-
-Our networks are generated by first creating an agent node for each NK locus.
-Each node is assigned a concern consisting of its associated locus and all loci its value depends on,
-as in the local learning strategies.
-This procedure forms an agent-locus affiliation network.
-Next, an agent-agent co-affiliation network is created by connecting two agents if they share at least
-one locus in their concerns.
-This process is exactly analogous to our definition of a WikiProject coeditor network,
-with agents playing the role of editors and NK loci playing the role of Wikipedia articles.
-
-To create a tunable degree, we duplicate each node and its node-locus edges and then
-randomly rewire those edges before creating the agent-agent network.
-The duplication process creates a high overlap between agent concerns,
-meaning that most agent-locus edges are redundant and do not create additional agent-agent edges,
-resulting in a low average degree.
-By randomly rewiring the agent-locus edges, the redundancy is reduced and the average degree of
-the agent-agent network is increased.
+We introduce a new strategy, which we call the consensus strategy.
+In {\em consensus}, agents first apply individual learning.
+Next, a consensus solution is constructed from each agent's individual solution by setting
+each NK locus's state to its most common value among the agent's individual solutions.
+The result of this process is that agents accept a single consensus solution at each iteration,
+which forms the basis for future individual learning.
+We include this strategy because of its similarity to the editing process of Wikipedia:
+at any given time, a Wikipedia article has a single state, determined by consensus,
+but editors may have differing opinions on how to improve that article.
 
 \subsection{Simulation results}
 
