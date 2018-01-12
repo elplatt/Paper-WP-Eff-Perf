@@ -530,79 +530,37 @@ Min-cut of WikiProject coeditor networks vs. their mean degree.
 }
 \end{figure}
 
-\begin{table*}[!ht]
+\begin{table}
 \small
 \caption{Standardized coefficients for OLS models.
 \label{tab:model}
 }
 \bigskip
 \begin{tabular}{lllllllll}
+&Perf$^\dagger$&A-Eff$^\dagger$&B-Eff$^\dagger$&C-Eff$^\dagger$\\
 \hline
-                               & Perf$_1^\dagger$ & Perf$_2^\dagger$ & A-Eff$_1^\dagger$ & A-Eff$_2^\dagger$ & B-Eff$_1^\dagger$ & B-Eff$_2^\dagger$ & C-Eff$_1^\dagger$ & C-Eff$_2^\dagger$ \\
+Mean degree$^\dagger$&-0.7$^{***}$&-0.8$^{***}$&-0.6$^{***}$&-0.3$^{*}$\\
+Out degree skew$^\dagger$&-0.4$^{***}$&-0.5$^{**}$&-0.3$^{*}$&-0.06\\
+Mean path length$^\dagger$&-0.33$^{***}$&-0.09&-0.05&-0.09\\
+C-Efficiency$^\dagger$&-0.08$^{*}$&\+---&\+---&\+---\\
+Connected frac.&0.01&0.09$^{*}$&0.15$^{***}$&0.06\\
+Talk fraction$^\dagger$&0&-0.02&-0.03&0.01\\
+Mean similarity$^\dagger$&0.06$^{**}$&-0.03&0.01&0.02\\
+Mean editors/art.$^\dagger$&0.3$^{**}$&0.3&0.2$^{*}$&0.09\\
+Article count$^\dagger$&-0.4&0.7$^{*}$&0.8$^{**}$&0.7$^{**}$\\
+Editor count$^\dagger$&0.4&0.9$^{**}$&0.8$^{**}$&0.5$^{*}$\\
+Revision count$^\dagger$&0.6$^{*}$&-1$^{**}$&-1.1$^{***}$&-1$^{***}$\\
+First assessment&0.05&0.11$^{**}$&0.31$^{***}$&0.43$^{***}$\\
+Mean article age&-0.03&-0.04&-0.01&-0.05$^{*}$\\
 \hline
-Mean degree$^\dagger$          &  -0.84$^{***}$  &  -0.78$^{***}$
-                               &  -0.61$^{**}$   &  -0.84$^{***}$
-                               &  -0.50$^{***}$  &  -0.61$^{***}$
-                               &  -0.34$^{**}$   &  -0.31$^{*}$ \\
-In-degree skewness$^\dagger$   &  -0.58$^{***}$  & \+ ---      
-                               &  -0.43$^{**}$   & \+ ---      
-                               &  -0.19          & \+ ---      
-                               &  -0.1           & \+ ---      \\
-Out-degree skewness$^\dagger$  &  \+ ---         &  -0.48$^{***}$  
-                               &  \+ ---         &  -0.57$^{***}$
-                               &  \+ ---         &  -0.26$^{*}$
-                               &  \+ ---         &  -0.066 \\
-Mean path$^\dagger$            &  -0.357$^{***}$ &  -0.356$^{***}$ 
-                               &  -0.026         &  -0.096
-                               &  -0.020         &  -0.045
-                               &  -0.092$^{**}$  &  -0.086 \\
-C-eff$^\dagger$                &  -0.083$^{**}$  & -0.085$^{**}$  
-                               &  \+ ---         & \+ ---      
-                               &  \+ ---         & \+ ---      
-                               &  \+ ---         & \+ --- \\
-Connectivity                   & \+0.018         & \+0.016        
-                               & \+0.081         & \+0.088
-                               & \+0.126$^{***}$ & \+0.142$^{***}$
-                               & \+0.080$^{**}$  & \+0.081$^{**}$ \\
-Mean editors/article$^\dagger$ & \+0.37$^{***}$  & \+0.40$^{***}$ 
-                               & \+0.22          & \+0.27
-                               & \+0.20          & \+0.22$^{*}$
-                               & \+0.076         & \+0.075 \\
-Article count$^\dagger$        &  -0.32          & -0.27          
-                               & \+0.63${^*}$    & \+0.70${^*}$ 
-                               & \+0.76$^{**}$   & \+0.78$^{**}$
-                               & \+0.67$^{***}$  & \+0.67$^{***}$ \\
-Editor count$^\dagger$         & \+0.68$^{*}$    & \+0.48         
-                               & \+0.74$^{*}$    & \+0.97$^{**}$
-                               & \+0.60$^{*}$    & \+0.72$^{**}$
-                               & \+0.52$^{*}$    & \+0.46$^{*}$ \\
-Revision count$^\dagger$       & \+0.37          & \+0.39         
-                               &  -0.84$^{**}$   & -0.88$^{**}$
-                               &  -1.05$^{***}$  & -1.05$^{***}$
-                               &  -1.00$^{***}$  & -1.00$^{***}$ \\
-First assessment               & \+0.028         & \+0.058        
-                               & \+0.086$^{*}$   & \+0.101$^{**}$
-                               & \+0.309$^{***}$ & \+0.321$^{***}$
-                               & \+0.456$^{***}$ & \+0.460$^{***}$ \\
-Mean article age               &  -0.040         & -0.029         
-                               &  -0.049         & -0.037
-                               &  -0.019         & -0.014
-                               &  -0.046$^{*}$   & -0.045$^{*}$ \\
-\hline
-DoF                            & 1278            & 1278          
-                               & 1048            & 1048
-                               & 1371            & 1371
-                               & 1540            & 1540 \\
-R$^2_{adj}$                    & 0.37            & 0.37          
-                               & 0.15            & 0.16
-                               & 0.30            & 0.30
-                               & 0.43            & 0.43 \\
+N&1179&966&1260&1415\\
+R$^2_{adj}$&0.37&0.17&0.30&0.43\\
 \hline
 \end{tabular}
 \begin{tablenotes}
 \item $\dagger$ Log-transformed. * $p < 0.05$. ** $p < 0.01$. *** $p < 0.001$.
 \end{tablenotes}
-\end{table*}
+\end{table}
 
 To study the relationship between network structure, efficiency, and performance,
 we model the performance and efficiency of WikiProjects using ordinary least-squares linear regression.
@@ -613,6 +571,7 @@ described below.
 \begin{description}
 \item[C-efficiency] Quantifies how quickly a WikiProject improves low-quality articles.
 \item[Connected fraction] Fraction of coeditor pairs connected by a path.
+\item[Talk fraction] Fraction of total revisions made to talk pages.
 \item[Mean editors/article] Mean number of editors collaborating on each article in a WikiProject.
 \item[Article count] Total number of articles in the WikiProject.
 \item[Editor count] Total number of editors working on articles within a WikiProject.
@@ -684,6 +643,8 @@ which maps individual preferences to community preferences.
 Wikipedia can thus be thought of as a group of editors with individual preferences
 for article states,
 collaborating to optimize articles according to community preferences.
+Note that these community preferences don't assume the existence of any
+ground truth, other than the preferences themselves.
 
 To simulate collaboration, we need a model problem for collaborators to solve.
 Following existing literature on social learning,
@@ -792,9 +753,7 @@ or the limited concern assumption.
 In the {\em conformity} strategy, agents simply choose the most common solution among their neighbors
 (ties are broken uniformly at random).
 This strategy does not rely on solution value at all, so clearly satisfies the
-unknown objective assumption,
-but it fails to satisfy the limited concern assumption because it updates all
-bits of the NK solution.
+unknown objective and limited concern assumptions.
 In both cases, a single iteration of individual learning is performed after each social learning
 iteration.
 Because each agent maintains a separate estimate of the solution,
@@ -804,7 +763,7 @@ neither of these strategies satisfies the single source of truth assumption.
 
 In order to satisfy the single source of truth assumption,
 we introduce a new strategy, which we call the local majority strategy.
-In {\em local majority}, agents begin with exactly the same starting state,
+In {\em local majority}, agents all begin with the same starting state,
 and apply individual learning to their concern to generate
 possible improvements to the solution.
 Next, a new solution is constructed by considering each locus of the NK solution
@@ -817,12 +776,34 @@ This strategy more realistically reflects collaborations like Wikipedia:
 at any given time, a Wikipedia article has a single state, determined by consensus,
 but editors may have differing opinions on how to improve that article.
 
+\begin{table*}
+\small
+\centering
+\caption{
+Social learning strategies
+\label{tab:strat}
+}
+\bigskip
+\begin{tabular}{lccccc}
+Name          & Social & Individual & Limited concern & Unknown objective & Single truth \\
+\hline
+Best+I & Best neighbor   & Global & & & \\
+Conf+I & Conformity      & Global & & \Checkmark & \\
+Best+LI & Best neighbor  & Local  & \Checkmark & & \\
+Conf+LI & Conformity     & Local  & \Checkmark & \Checkmark & \\
+LMaj+LI & Local majority & Local  & \Checkmark & \Checkmark & \Checkmark \\
+\hline
+\end{tabular}
+\end{table*}
+
 \subsection{Simulation results}
 
 We simulated 100 trials for rewiring values of 0.0, 0.167, 0.333, 0.5, 0.667, 0.833, and 1.0.
 For each trial we generated an NK model with N=250 and K=7 and ran each social learning strategy
-for 300 iterations,
+(Table \ref{tab:strat}) for 300 iterations,
 as well as a network based on that NK model and rewired.
+For conformity and best-neighbor strategy, we used a sample size of 3, following
+\cite{barkoczi_social_2016}.
 We confirmed that all trials converged to their maximum value before reaching the last iteration.
 Some statistics on the network properties of the networks are summarized in Table \ref{tab:stats}.
 We see that the coefficient of variation of degree is approximately 10\%,
@@ -838,7 +819,6 @@ Simulated network statistics.
 }
 \bigskip
 \begin{tabular}{lcc}
-\hline
 Property          & Mean  & Std. Dev. \\
 \hline
 Mean Degree       & 132.3 & 9.2 \\
@@ -869,7 +849,6 @@ Efficiency regression coefficients.
 \centering
 \bigskip
 \begin{tabular}{llc}
-\hline
 Strategy & Std. Coeff. \\
 \hline
 Best-neighbor       & -0.064 \\
@@ -893,7 +872,6 @@ Performance regression coefficients.
 \centering
 \bigskip
 \begin{tabular}{llc}
-\hline
 Strategy & Std. Coeff. \\
 \hline
 Best-neighbor       & \+0.084 \\
