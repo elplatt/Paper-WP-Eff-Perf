@@ -785,7 +785,7 @@ Social learning strategies
 }
 \bigskip
 \begin{tabular}{lccccc}
-Name          & Social & Individual & Limited concern & Unknown objective & Single truth \\
+Name          & Social stage & Individual stage & Limited concern & Unknown objective & Single truth \\
 \hline
 Best+I & Best neighbor   & Global & & & \\
 Conf+I & Conformity      & Global & & \Checkmark & \\
@@ -821,8 +821,8 @@ Simulated network statistics.
 \begin{tabular}{lcc}
 Property          & Mean  & Std. Dev. \\
 \hline
-Mean Degree       & 132.3 & 9.2 \\
-Mean Path length  & 1.735 & 0.019 \\
+Mean Degree       & 116.6 & 1.3 \\
+Mean Path length  & 1.766 & 0.0027 \\
 \hline
 \end{tabular}
 \end{table}
@@ -832,11 +832,12 @@ Mean Path length  & 1.735 & 0.019 \\
 \includegraphics[width=2.5in,height=5in]{fig-val-iter.pdf}
 \caption{
 Mean agent solution value over time, averaged over 100 trials.
-The left and right figures show results for agent networks with the probability of
+The top and bottom figures show results for agent networks with the probability of
 rewiring set to 0 and 1, respectively.
-In both, local strategies are less efficient and more performant than non-local.
-The consensus strategy is both more efficient and more performant than others,
-with its performance increasing with higher rewiring.
+In both, local strategies are less efficient than their non-local counterparts.
+Local best-neighbor out-performs global,
+while local conformity is the worst performer in all cases.
+The local majority strategy is both more efficient and more performant than others.
 \label{fig:val-iter}
 }
 \end{figure}
@@ -844,42 +845,19 @@ with its performance increasing with higher rewiring.
 \begin{table}
 \small
 \caption{
-Efficiency regression coefficients.
-\label{tab:sim-eff}
-}
-\centering
-\bigskip
-\begin{tabular}{llc}
-Strategy & Std. Coeff. \\
-\hline
-Best-neighbor       & -0.064 \\
-Conformity          & -0.080 \\
-Local best-neighbor & -0.086 \\
-Local conformity    & \+0.049 \\
-Consensus           & -0.0325$^{***}$ \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\item \centering * $p < 0.05$. ** $p < 0.01$. *** $p < 0.001$.
-\end{tablenotes}
-\end{table}
-
-\begin{table}
-\small
-\caption{
-Performance regression coefficients.
+Degree regression coefficients for agent-based models.
 \label{tab:sim-perf}
 }
 \centering
 \bigskip
-\begin{tabular}{llc}
-Strategy & Std. Coeff. \\
+\begin{tabular}{lll}
+Strategy & Perf. Std. Coeff. & Eff. Std. Coeff.\\
 \hline
-Best-neighbor       & \+0.084 \\
-Conformity          & \+0.130 \\
-Local best-neighbor & -0.080 \\
-Local conformity    & -0.020 \\
-Consensus           & \+2.38$\times{10^{-4\;**}}$ \\
+Best+I  & -4.2$\times{10^{-5}}$ & \+4.1$\times{10^{-5}}$ \\
+Conf+I  & \+2.7$\times{10^{-5}}$ & \+9.4$\times{10^{-5}}$ \\
+Best+LI & -9.6$\times{10^{-4\;**}}$ & \+7.7$\times{10^{-5}}$ \\
+Conf+LI & -1.5$\times{10^{-3\;***}}$ & \+8.7$\times{10^{-5\;*}}$ \\
+LMaj+LI & \+1.2$\times{10^{-4\;**}}$ & -0.038$^{***}$ \\
 \hline
 \end{tabular}
 \begin{tablenotes}
@@ -891,10 +869,16 @@ Consensus           & \+2.38$\times{10^{-4\;**}}$ \\
 \includegraphics[width=6.67in,height=1.33in]{fig-deg-eff.pdf}
 \includegraphics[width=6.67in,height=1.33in]{fig-deg-perf.pdf}
 \caption{
-Efficiency and Performance of social learning strategies vs network degree.
+Efficiency and Performance of social learning strategies vs. network degree.
 Each point represents a single trial of 300 iterations.
-The consensus strategy shows increased performance and decreased efficiency as
-degree increases, while other strategies show no degree dependence.
+The local best-neighbor strategy shows
+decreased performance at high degree,
+with no significant change in efficiency.
+Local conformity shows decreased performance and increased efficiency at high
+degree.
+Local majority shows the opposite behavior:
+increased performance and decreased efficiency at high degree,
+with the efficiency showing the largest effect size of all strategies.
 \label{fig:deg-eff-perf}
 }
 \end{figure*}
@@ -908,7 +892,7 @@ The consensus strategy is both more efficient and more performant than others,
 with its performance increasing with higher rewiring.
 
 The effect of degree on performance and efficiency is shown in Figure \ref{fig:deg-eff-perf} and
-Tables \ref{tab:sim-eff} and \ref{tab:sim-perf}.
+Table \ref{tab:sim-perf}.
 For both local and non-local versions of the best-neighbor and conformity strategies,
 there is no significant effect of degree on performance or efficiency.
 As noted above however, the local versions consistently have higher performance and lower efficiency
