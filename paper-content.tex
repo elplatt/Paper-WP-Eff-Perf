@@ -273,9 +273,9 @@ In addition to the above assessment classes, articles on Wikipedia can be tagged
 FA and GA determinations are made using a Wikipedia-wide consensus,
 in parallel to any WikiProject-based evaluations.
 FA articles are ``the best articles Wikipedia has to offer''
-\cite{}.
+\cite{wikipedia_contributors_wikipedia:featured_2018}.
 GA articles meet ``a core set of editorial standards`` but are ``not featured article quality''
-\cite{}.
+\cite{wikipedia_contributors_wikipedia:good_2017}.
 When an article is assigned GA or FA status,
 WikiProject quality assessments are often updated to reflect that status.
 For example, the article {\em Mewtwo} was assessed as GA status on October 5,
@@ -287,19 +287,18 @@ This example also illustrates a quirk of Wikipedia norms:
 very often, articles pass to GA or FA directly from B, skipping A.
 The majority of WikiProjects rarely use the A class quality assessment.
 
-\begin{figure}
+\begin{figure}[h!]
 \begin{center}
 \includegraphics[width=3in]{fig-knitting.png}
 \caption{
-Templates appearing at the top of the English-language Wikipedia talk page
+From Wikipedia talk page
 for {\em Knitting}.
-The article belongs to both {\em WikiProject Technology} and
-{\em WikiProject Textile Arts}.
-Both WikiProjects have assessed the article as B-class quality.
+Both {\em WikiProject Technology} and
+{\em WikiProject Textile Arts}
+have assessed the article as B-class quality.
 The article has also been nominated for both good article (GA) and
 featured article (FA) status,
-but after a consensus-based deliberation open to all Wikipedia editors,
-was not assigned GA or FA status.
+but was not assigned either status after a site-wide consensus-based deliberation.
 \label{fig:knitting}
 }
 \end{center}
@@ -536,10 +535,6 @@ with low skewness after log transformation.
 
 \begin{table}
 \small
-\caption{Standardized coefficients for OLS models.
-\label{tab:model}
-}
-\bigskip
 \begin{tabular}{lllllllll}
 &Perf$^\dagger$&A-Eff$^\dagger$&B-Eff$^\dagger$&C-Eff$^\dagger$\\
 \hline
@@ -564,6 +559,9 @@ R$^2_{adj}$&0.37&0.17&0.30&0.43\\
 \begin{tablenotes}
 \item $\dagger$ Log-transformed. * $p < 0.05$. ** $p < 0.01$. *** $p < 0.001$.
 \end{tablenotes}
+\caption{Standardized coefficients for OLS models.
+\label{tab:model}
+}
 \end{table}
 
 To study the relationship between network structure, efficiency, and performance,
@@ -630,11 +628,6 @@ more efficiently, and reach higher quality ratings in general.
 \begin{table*}[!ht]
 \small
 \centering
-\caption{
-Social learning strategies
-\label{tab:strat}
-}
-\bigskip
 \begin{tabular}{lccccc}
 Name          & Social stage & Individual stage & Limited concern & Unknown objective & Single truth \\
 \hline
@@ -645,6 +638,13 @@ Conf+LI & Conformity     & Local  & \Checkmark & \Checkmark & \\
 LMaj+LI & Local majority & Local  & \Checkmark & \Checkmark & \Checkmark \\
 \hline
 \end{tabular}
+\caption{
+Definitions and properties of social learning strategies.
+Each consists of a social stage and an individual stage.
+Individual stages use hill-climbing based on either the global state,
+or the agent's local concern.
+\label{tab:strat}
+}
 \end{table*}
 
 In addition to our empirical study,
@@ -819,34 +819,20 @@ For each trial we generated an NK model with N=250 and K=7 and ran each social l
 as well as a network based on that NK model and rewired.
 For conformity and best-neighbor strategy, we used a sample size of 3, following
 \cite{barkoczi_social_2016}.
-We confirmed that all trials converged to their maximum value before reaching the last iteration.
-Some statistics on the network properties of the networks are summarized in Table \ref{tab:stats}.
-We see that the coefficient of variation of degree is approximately 10\%,
+We confirmed that all trials converged to their maximum value before reaching
+the last iteration.
+Networks had mean degree 116.6 with 1.3 standard deviation,
+and mean path length of 1.766 with 0.0027 standard deviation.
+The coefficient of variation of degree is approximately 10\%,
 while only 1\% for mean path length, confirming that the rewiring process has a stronger influence
 on degree than on path length.
 
-\begin{table}
-\small
-\centering
-\caption{
-Simulated network statistics.
-\label{tab:stats}
-}
-\bigskip
-\begin{tabular}{lcc}
-Property          & Mean  & Std. Dev. \\
-\hline
-Mean Degree       & 116.6 & 1.3 \\
-Mean Path length  & 1.766 & 0.0027 \\
-\hline
-\end{tabular}
-\end{table}
-
-\begin{figure}
+\begin{figure}[t!]
 \centering
 \includegraphics[width=2.5in,height=5in]{fig-val-iter.pdf}
 \caption{
 Mean agent solution value over time, averaged over 100 trials.
+Strategies are defined in Table \ref{tab:strat}.
 The top and bottom figures show results for agent networks with the probability of
 rewiring set to 0 and 1, respectively.
 In both, local strategies are less efficient than their non-local counterparts.
@@ -886,6 +872,7 @@ LMaj+LI & \+1.2$\times{10^{-4\;**}}$ & -0.038$^{***}$ \\
 \caption{
 Efficiency and Performance of social learning strategies vs. network degree.
 Each point represents a single trial of 300 iterations.
+Strategies are defined in Table \ref{tab:strat}.
 The local best-neighbor strategy shows
 decreased performance at high degree,
 with no significant change in efficiency.
@@ -903,7 +890,7 @@ different learning strategies and rewiring values.
 Each curve represents an average over 100 trials, each with 250 agent solutions.
 For all rewiring values, local strategies are less efficient and more performant than their
 non-local counterparts.
-For the best-neighbor strtegy, local outperforms global.
+For the best-neighbor strategy, local outperforms global.
 For local conformity strategy performs notably worse than all other strategies.
 The local majority strategy is both more efficient and more performant than others,
 with its performance increasing with higher rewiring.
@@ -986,12 +973,23 @@ Similarly, our study focuses entirely on a single online community and while it 
 does not necessarily generalize,
 and studies of other systems are necessary to corroborate our findings.
 
-Our work raises several questions that could be the subject of future work.
+A better understanding of the relationship between network structure and collaboration
+outcomes has many practical applications.
+Online communities using recommender systems to improve collaboration
+could make recommendations guided by desirable network properties.
+Similarly, network structure could be used to identify underperforming
+groups in need of an intervention.
+The relationship between network structure and learning strategy suggests that
+behavioral norms interact with network structure.
+This knowledge could be used by interventions to ensure that behavioral norms
+and network structure are aligned for best performance and efficiency.
+
+Our work suggests several directions for future work.
 Is the correlation between network structure, performance, and efficiency causal?
 A time-dependent analysis of our data could offer insight.
 Are similar relationships observed in other large-scale collaborations?
-Does varying degree independently of path length influence performance and efficiency in a controlled
-lab setting?
+Does varying degree independently of path length influence
+performance and efficiency in a controlled lab setting?
 
 \section{Conclusion}
 \label{sec:conclusion}
