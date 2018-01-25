@@ -5,13 +5,16 @@ Wikipedia is a visible and successful example of such a collaboration which migh
 insight into what makes large-scale, decentralized collaborations successful.
 We analyze the relationship between the structural properties of WikiProject coeditor networks
 and the performance and efficiency of those networks.
-WikiProject performance is consistent with results seen in numerical and small-scale lab studies:
-a performance/efficiency trade-off,
+We confirm the existence of an overall performance-efficiency trade-off,
+while observing that some projects are higher than others in both performance
+and efficiency,
+suggesting the existence factors correlating positively with both.
+Namely, we find an association between low-degree coeditor networks
+and both high performance and high efficiency.
+We also confirm results seen in previous numerical and small-scale lab studies:
 higher performance with less skewed node distributions,
 and higher performance with shorter path lengths.
-We also see behaviors not previously identified: an association between low degree coeditor networks
-and both higher performance and higher efficiency.
-We also use agent-based models to explore possible mechanisms for
+We use agent-based models to explore possible mechanisms for
 degree-dependent performance and efficiency.
 We present a novel local-majority learning strategy designed to satisfy properties
 of real-world collaborations.
@@ -19,7 +22,7 @@ The local-majority strategy as well as a localized conformity-based strategy
 both show degree-dependent performance and efficiency,
 but in opposite directions,
 suggesting that these factors depend on both network structure and learning strategy.
-Our empirical and numerical results suggest 
+Our results suggest 
 possible benefits to decentralized collaborations made of smaller,
 more tightly-knit teams,
 and that these benefits may be modulated by the particular learning strategies
@@ -45,12 +48,11 @@ A better theoretical understanding of projects like Wikipedia is highly desirabl
 help inform the design of new collaborative projects.
 We focus on one aspect of organizing a large-scale decentralized collaboration:
 the network structure \cite{newman_structure_2003}.
-If Wikipedia is not structured as a top-down hierarchy, how is it structured?
-And how does that structure relate to its success?
+How does Wikipedia's non-hierarchical structure relate to its success?
 
-We approach these questions by analyzing WikiProjects on the English-language Wikipedia.
+We look specifically at WikiProjects on the English-language Wikipedia.
 WikiProjects are collections of thematically related articles,
-each with their own standards, norms, and processes for evaluating and improving articles.
+each with their own standards, norms, and processes.
 When measuring the quality of collaborative projects,
 there are at least two distinct measures to consider.
 The first measure is short-term:
@@ -62,6 +64,11 @@ the highest quality typically reached by an output,
 which we call {\em performance}.
 These two terms are often used interchangeably,
 but we find it fruitful to distinguish between the two concepts.
+We find that Wikipedia, like many other collaborations,
+exhibits an overall trade-off between performance and efficiency.
+However, some WikiProjects are higher in both efficiency and performance
+than others,
+suggesting the existence of factors that correlate positively with both.
 
 Our study focuses on the coeditor networks of each WikiProject:
 which editors have edited at least one article in common?
@@ -91,10 +98,10 @@ including Wikipedia.
 
 Our main findings are:
 \begin{itemize}
-\item WikiProjects having low-degree coeditor networks tend to have both higher performance and higher efficiency, even when controlling for path length;
+\item Despite an overall performance/efficiency trade-off,
+WikiProjects having low-degree coeditor networks tend to have both higher performance and higher efficiency;
 \item Short path lengths tend to be associated with higher performance, consistent with a conformity-based learning strategy;
-\item Structural inequality, as measured by degree skewness, is associated with lower performance,
-and lower efficiency at reaching the highest quality levels;
+\item Structural inequality, as measured by degree skewness, is associated with lower performance;
 \item Our agent-based model
 shows that the efficiency and performance of collaborations can
 depend on network degree,
@@ -108,13 +115,6 @@ recommend tasks based on how they will
 influence network structure,
 or interventions which seek to encourage the behavioral norms most
 effective for existing network structure.
-
-The rest of the paper is structured as follows.
-The following section reviews related work and the motivation for the present project.
-We next describe the methodology and results of our empirical analysis of WikiProjects,
-followed by the methodology and results of our agent-based models.
-We continue to discuss the interpretation and broader impact of our results,
-and then conclude.
 
 \section{Background and Related Work}
 \label{sec:background}
@@ -186,22 +186,22 @@ but concluded that altruistic
 behavior only influences first-degree neighbors.
 
 {\bf Digital Communities.}
-Research on digital communities has also examined the role of factors
-such as diversity and inequality
+Research on digital communities has also examined the role of 
+diversity and inequality
 in collaborative work and decision-making.
 Using an agent-based model, Hong and Page \cite{hong_groups_2004} found that
 diverse groups can outperform groups composed of the best individual
 problem-solvers.
-In sociology, much research has been done examining the relationship between
+In sociology, research has focused on the relationship between
 network structure and social capital.
 Powerful individuals are often ``brokers''
 who act as exclusive intermediaries between disconnected portions of the
 social network \cite{silverman_patronage_1965}.
 Similarly, successful innovation in organizations often occurs in ``structural
 holes'' between groups \cite{granovetter_strength_1973}.
-There is some evidence that groups with high structural inequality,
-as evidenced by highly-skewed degree distributions,
-perform worse on collaborative tasks \cite{kearns_experiments_2012}.
+There is some evidence that groups with higher structural inequality
+(degree skewness)
+perform worse \cite{kearns_experiments_2012}.
 
 Several studies have examined the role of community in the specific context
 of Wikipedia.
@@ -250,11 +250,11 @@ WikiProjects are groups of thematically-related articles
 Information about the an article's associated WikiProjects
 can be viewed on that
 article's talk page (Figure \ref{fig:knitting}).
-Each WikiProject has its own page and talk page.
-These pages contain information about community norms within the project
+Each WikiProject has its own page and talk page,
+containing information about community norms within the project
 as well as discussions about individual articles.
 WikiProjects are thus distinct communities, with distinct norms and processes.
-These communities are the fundamental units of analysis in the present paper.
+These communities are the fundamental units of analysis in this paper.
 
 One of the main roles of a WikiProject is to evaluate the quality of its articles.
 Quality assessments are made through consensus-based deliberation on the WikiProject
@@ -296,9 +296,6 @@ for {\em Knitting}.
 Both {\em WikiProject Technology} and
 {\em WikiProject Textile Arts}
 have assessed the article as B-class quality.
-The article has also been nominated for both good article (GA) and
-featured article (FA) status,
-but was not assigned either status after a site-wide consensus-based deliberation.
 \label{fig:knitting}
 }
 \end{center}
@@ -354,7 +351,7 @@ we desire our definition of efficiency to meet the following conditions:
 \begin{itemize}
 \item{Strictly increasing in the number of articles reaching grade $G$ (with revision count fixed);}
 \item{Strictly decreasing in the number of revisions (with transition count fixed);}
-\item{Independent of WikiProject size: not affected by adding an article if that article's transition/revision ratio is equal to the efficiency.}
+\item{Independent of WikiProject size: not affected by adding an article with the same efficiency.}
 \end{itemize}
 
 We now define an efficiency measure which meets the above criteria.
@@ -376,8 +373,9 @@ N(W,G)
 \sum_{t \in T(W,G)} \frac{r(t)}{g(t)}
 \right]^{-1},
 \eeq
-Where the $g(t)$ term is present because a assessments sometimes raise article quality by several
-grades, in which case we divide the revisions evenly between all grade levels achieved.
+Where the $g(t)$ term accounts for assessments raising article quality by several
+grades,
+dividing the revisions evenly between all grade levels achieved.
 
 For performance, we wish to quantify how good articles tend to be when they reach a stable state.
 Measuring performance is difficult for several reasons:
@@ -482,10 +480,10 @@ and allow innovations to propagate through complex contagion,
 in which innovations are only adopted after multiple exposures through different sources
 \cite{centola_complex_2007}.
 
-The mean path and min-cut network measures are computationally intensive,
+The mean path and min-cutare computationally intensive,
 requiring distance and minimum $st$-cut calculations for each all node pairs.
 For larger projects, these calculations are impractical.
-When coeditor networks were large, we employed sampling to determine mean path length and mean
+For large networks, we employed sampling to determine mean path length and mean
 min-cut.
 For mean path length, source nodes were sampled, and path length was calculated to all destination nodes
 from each of these.
@@ -505,6 +503,11 @@ We find that both efficiency and performance are highly right-skewed,
 with a small number of projects having values much higher than the average.
 After log-transforming the values, both the efficiency and the performance have
 a unimodal distribution with low skew (see Figure \ref{fig:eff-perf-hist}).
+Our findings confirm the trade-off between performance and efficiency
+observed in many other settings (Figure \ref{fig:eff-perf}).
+However, when looking at specific projects, some are higher in both performance
+and efficiency,
+suggesting the existence of factors which correlate positively with both.
 
 We also find that mean min-cut is highly correlated with degree ($r=0.980$, $p<0.001$),
 so we exclude min-cut from regression models to prevent collinearity.
@@ -513,7 +516,7 @@ the minimum $st$-cut is simply the either set of edges from $s$ or the set of ed
 The rarity of non-trivial min-cuts suggests that WikiProject coeditor networks have very few central
 bottlenecks and are thus highly decentralized.
 
-\begin{figure}
+\begin{figure}[t!]
 \centering
 \includegraphics[width=2.5in,height=2.5in]{fig-eff-perf-hist.pdf}
 \caption{
@@ -521,6 +524,20 @@ Histograms of WikiProject efficiency and performance.
 Both measures are highly right-skewed, but form unimodal distributions
 with low skewness after log transformation.
 \label{fig:eff-perf-hist}
+}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=2.5in,height=1.67in]{fig-perf-eff.pdf}
+\caption{
+WikiProject performance is anticorrelated with B-level efficiency,
+with Pearson r of -0.12.
+Results are similar for other grade levels.
+On average, highly efficient WikiProjects are under-performing,
+but when looking at specific WikiProjects,
+some are higher than others in both performance and efficiency.
+\label{fig:eff-perf}
 }
 \end{figure}
 
@@ -572,7 +589,7 @@ We also include several project-level variables to control for confounding facto
 described below.
 \begin{description}
 \item[C-efficiency]
-(Only used for performance.)
+(Performance only.)
 Quantifies how quickly a WikiProject improves articles.
 Efficiencies for different grades are highly correlated,
 so we include only one.
