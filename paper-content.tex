@@ -177,10 +177,10 @@ networks.
 Similarly, some network topologies are able to reach faster decisions in the
 presence of more information, while others show the opposite effect
 \cite{kearns_experimental_2006}.
-Based on lab experiments, Fowler and Christakis \cite{fowler_cooperative_2010}
+Based on lab experiments, Fowler and Christakis \shortcite{fowler_cooperative_2010}
 suggest that individual decisions towards altruism are conditional on their
 neighbor's behavior and ``contagious'' up to three degrees away.
-Later experiments by Suri and Watts \cite{suri_cooperation_2011} confirmed the
+Later experiments by Suri and Watts \shortcite{suri_cooperation_2011} confirmed the
 existence of conditional altruism,
 but concluded that altruistic
 behavior only influences first-degree neighbors.
@@ -189,7 +189,7 @@ behavior only influences first-degree neighbors.
 Research on digital communities has also examined the role of 
 diversity and inequality
 in collaborative work and decision-making.
-Using an agent-based model, Hong and Page \cite{hong_groups_2004} found that
+Using an agent-based model, Hong and Page \shortcite{hong_groups_2004} found that
 diverse groups can outperform groups composed of the best individual
 problem-solvers.
 In sociology, research has focused on the relationship between
@@ -203,29 +203,31 @@ There is some evidence that groups with higher structural inequality
 (degree skewness)
 perform worse \cite{kearns_experiments_2012}.
 
-Several studies have examined the role of community in the specific context
-of Wikipedia.
-Robert and Romero found that
+For Wikipedia specifically,
+Robert and Romero \shortcite{robert_crowd_2015} found that
 larger group sizes yield higher article ratings
-(as determined by editor peer-review)
-when the groups are diverse and experienced
-\cite{robert_crowd_2015}.
+when the groups are diverse and experienced.
 Also on Wikipedia,
 Kittur and Kraut found that different types of coordination have a complex
-effect on the quality of Wikipedia articles \cite{kittur_harnessing_2008}.
+effect on the quality of Wikipedia articles \shortcite{kittur_harnessing_2008}.
 Both explicit and implicit coordination result in higher quality articles,
 with explicit coordination being especially central in the early life of an
 article.
-Shaw and Hill found that behavior in online wiki communities is consistent
-with the Robert Michels' ``iron law of oligarchy,''
+Shaw and Hill \shortcite{shaw_laboratories_2014}
+found that behavior in online wiki communities is consistent
+with the ``iron law of oligarchy,''
 which states that
 earlier members of a group will, over time, gain disproportionate
 decision-making power and act increasingly out of self-interest rather than
-the good of the group.\cite{michels_political_1999,shaw_laboratories_2014}.
+the good of the group \cite{michels_political_1999}.
+Similarly, Halfaker et al. \shortcite{halfaker_rise_2013} attributed decreasing
+participation on Wikipedia to poor retention of new users.
 Looking specifically at Wikipedia policies determined by editor consensus,
-Keegan and Fiesler found a trend
-from flexible rule-making towards less flexible maintenance and deliberation
-\cite{keegan_evolution_2017}.
+Keegan and Fiesler \shortcite{keegan_evolution_2017} found a trend
+from flexible rule-making towards less flexible maintenance and deliberation.
+Using content analysis,
+Morgan et al. \shortcite{morgan_project_2013} found WikiProjects to be
+more loosely organized than traditional teams.
 
 Across the broad range of work discussed above,
 a few key themes emerge.
@@ -305,13 +307,12 @@ have assessed the article as B-class quality.
 
 Our analysis combines multiple data sets from the English-language Wikipedia.
 For information about edit history, we used a publicly-available data set containing
-metadata about all edits from July 12, 2006 to December 2, 2015.
-To get the rating history of each article,
-we wrote a script to scrape the daily logs produced by WP 1.0 Bot for
-all unique WikiProjects (2279)
+metadata (time, article id, user) about all edits from July 12, 2006 to December 2, 2015.
+We used a custom script to scrape article quality assessments from logs produced
+by WP 1.0 Bot for 2279 unique WikiProjects
 between May 4, 2006 and December 2, 2015.
-Finally, we used a publicly-available log of page events (including rename events)
-to reconstruct the unique identifier for each article title mentioned in the rating history logs.
+Finally, we used a publicly-available database dump of page events (including rename events)
+to reconstruct the article id for each title mentioned in the assessment logs.
 
 \subsection{Efficiency and Performance}
 
@@ -457,8 +458,8 @@ from $s$ to $t$.
 The {\em characteristic path length} (or just {\em path length} for brevity)
 is the mean distance between all editor pairs,
 excluding unconnected pairs.
-To account for unconnected pairs, we also measure the {\em connected fraction}
-of all possible edge pairs.
+To account for unconnected nodes, we also measure the {\em connected fraction}:
+the fraction of ordered node pairs with a directed path from source to sink.
 The path length represents how quickly information can move through the network.
 Networks with longer paths require more interactions for information to propagate through
 the network,
@@ -700,17 +701,19 @@ we use the NK model \cite{kauffman_towards_1987}
 to create NP-hard, nonlinear optimization problems.
 The NK model produces an objective function with a
 {\em rugged landscape}, i.e., many local optima.
-The ruggedness of the model can be tuned through the parameters $N$ and $K$.
-Formally, the NK model produces a function $F$ mapping a binary string $S$ of length
+The ruggedness of the model can be tuned through the parameters $N$
+(the dimensionality of the solution space)
+and $K$ (the level of inderdependence between dimensions).
+Formally, the NK model produces an objective function $F$ mapping a binary string $S$ of length
 $N$ to a real value in $[0,1]$.
-The model consists of $N$ {\em loci}, with locus $i$ having a binary state $S_i$
+Model state is divided into $N$ {\em loci}, with locus $i$ having a binary state $S_i$
 and a value $f_i(S)$ dependent on its own state
 and on the state of $K$ random other loci.
 The functions $f_i(S)$ are created by selecting a random value in $[0,1]$ for
 each possible state of locus $i$ and its $K$ neighbors.
 The value of the model $F(S)$ is the mean of all locus values $f_i(S)$.
-In our models,
-agents thus seek to find a bit string $S$ that achieves the largest $F(S)$.
+In our simulations,
+agents iteratively search for a bit string $S$ that maximizes $F(S)$.
 
 In a typical social learning model,
 a set of agents each maintain an estimate of the optimal state
@@ -850,15 +853,35 @@ on degree than on path length.
 \caption{
 Mean agent solution value over time, averaged over 100 trials.
 Strategies are defined in Table \ref{tab:strat}.
-The top and bottom figures show results for agent networks with the probability of
-rewiring set to 0 and 1, respectively.
-In both, local strategies are less efficient than their non-local counterparts.
-Local best-neighbor out-performs global,
-while local conformity is the worst performer in all cases.
-The local majority strategy is both more efficient and more performant than others.
 \label{fig:val-iter}
 }
 \end{figure}
+
+\begin{table}
+\small
+\caption{
+Simulated Performance and Efficiency.
+Results shown for 100 trials with P[rewire] = 0.
+Strategies are defined in Table \ref{tab:strat}.
+Local strategies are less efficient than their non-local counterparts.
+Local best-neighbor out-performs global,
+while local conformity is the worst performer in all cases.
+The local majority strategy is both most efficient and most performant.
+\label{tab:sim-eff-perf}
+}
+\centering
+\bigskip
+\begin{tabular}{lll}
+Strategy & Performance & Efficiency\\
+\hline
+Best+I  & 0.722 $\pm$ 0.001 & 0.0221 $\pm$ 0.0003 \\
+Conf+I  & 0.721 $\pm$ 0.001 & 0.0174 $\pm$ 0.0002 \\
+Best+LI & 0.726 $\pm$ 0.001 & 0.0131 $\pm$ 0.0002 \\
+Conf+LI & 0.586 $\pm$ 0.001 & 0.030 $\pm$ 0.001 \\
+LMaj+LI & 0.729 $\pm$ 0.001 & 0.046 $\pm$ 0.002 \\
+\hline
+\end{tabular}
+\end{table}
 
 \begin{table}
 \small
@@ -905,8 +928,9 @@ with the efficiency showing the largest effect size of all strategies.
 Figure \ref{fig:val-iter} shows how agents' solutions improve after repeated applications of
 different learning strategies and rewiring values.
 Each curve represents an average over 100 trials, each with 250 agent solutions.
-For all rewiring values, local strategies are less efficient and more performant than their
-non-local counterparts.
+The mean performance and efficiency are reported in Table \ref{tab:sim-eff-perf}.
+For all rewiring values, local strategies are less efficient and more performant
+than their non-local counterparts.
 For the best-neighbor strategy, local outperforms global.
 For local conformity strategy performs notably worse than all other strategies.
 The local majority strategy is both more efficient and more performant than others,
@@ -917,7 +941,7 @@ the performance and efficiency can be simultaneously increased.
 Furthermore, performance and efficiency are potentially affected by both the choice of
 learning strategy and the average degree of the agents' social network.
 
-The effect of degree on performance and efficiency is shown in Figure \ref{fig:deg-eff-perf} and
+The effects of degree on performance and efficiency are shown in Figure \ref{fig:deg-eff-perf} and
 Table \ref{tab:sim-perf}.
 For non-local versions of both conformity and best-neighbor strategy,
 there is no significant effect of degree on performance or efficiency.
@@ -986,9 +1010,18 @@ Our empirical analysis is purely correlative and cannot be used to draw
 conclusions about the causal influence of network structure on collaboration.
 However, the consistency of our results with other lab-based and numerical studies
 suggests that the causal link is worthy of further study.
-Similarly, our study focuses entirely on a single online community and while it is suggestive,
-does not necessarily generalize,
-and studies of other systems are necessary to corroborate our findings.
+Similarly, our study focuses entirely on a single online community,
+and while the results are suggestive, they do not necessarily generalize.
+We have focused on structure, ignoring content-related variables.
+For simplicity, we have assumed unweighted edges and
+measured work by revision counts rather than bytes changed.
+
+Our work suggests several directions for future work.
+Is the correlation between network structure, performance, and efficiency causal?
+A time-dependent analysis of our data could offer insight.
+Are similar relationships observed in other large-scale collaborations?
+Does varying degree independently of path length influence
+performance and efficiency in a controlled lab setting?
 
 A better understanding of the relationship between network structure and collaboration
 outcomes has many practical applications.
@@ -1000,13 +1033,6 @@ The relationship between network structure and learning strategy suggests that
 behavioral norms interact with network structure.
 This knowledge could be used by interventions to ensure that behavioral norms
 and network structure are aligned for best performance and efficiency.
-
-Our work suggests several directions for future work.
-Is the correlation between network structure, performance, and efficiency causal?
-A time-dependent analysis of our data could offer insight.
-Are similar relationships observed in other large-scale collaborations?
-Does varying degree independently of path length influence
-performance and efficiency in a controlled lab setting?
 
 \section{Conclusion}
 \label{sec:conclusion}
@@ -1035,12 +1061,10 @@ Our results suggest that the success of large-scale collaborations may be aided 
 consensus or conformity-based decision-making, and more tightly-knit collaborations between smaller teams.
 
 \section{Acknowledgments}
-Anonymized for blind review.
-%I would like to thank Daniel M. Romero for valuable guidance and feedback;
-%Ceren Budak and Scott E. Page for their time and feedback;
-%Danielle Livneh and Karthik Ramanathan for help collecting the data sets;
-%Yan Chen and Tanya Rosenblat for feedback on the methodology;
-%and the attendees of the May 25, 2017 MIT Center for Civic Media lab meeting and
-%the Berkman-Klein Center's Cooperation Working Group for helpful feedback on
-%preliminary results.
-%This research was funded by the University of Michigan School of Information.
+%Anonymized for blind review.
+Thanks to
+Ceren Budak, Scott E. Page, Yan Chen, Tanya Rosenblat, anonymous reviewers,
+and the attendees of the May 25, 2017 MIT Center for Civic Media lab meeting and
+the Berkman-Klein Center Cooperation Working Group for helpful feedback;
+and to Danielle Livneh and Karthik Ramanathan for help collecting the data.
+This research was funded by the University of Michigan School of Information.
