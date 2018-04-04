@@ -39,20 +39,20 @@ in use.
 The internet has enabled collaborations at a global scale.
 Wikipedia, a free encyclopedia that invites anyone to edit articles,
 is one of the most successful and visible examples of such a collaboration.
-Organizing groups, even small ones, without top-down control is notoriously
+Organizing groups without top-down control is notoriously
 difficult
 \cite{freeman_tyranny_1972},
 and yet Wikipedia, with millions of self-organized editors,
 has produced a high-quality encyclopedia \cite{giles_internet_2005,keegan_evolution_2017}.
 A better theoretical understanding of projects like Wikipedia is highly desirable as it could
 help inform the design of new collaborative projects.
-We focus on one aspect of organizing a large-scale decentralized collaboration:
-the network structure \cite{newman_structure_2003}.
+We focus on one aspect of a large-scale decentralized collaboration:
+its network structure \cite{newman_structure_2003}.
 How does Wikipedia's non-hierarchical structure relate to its success?
 
-We look specifically at WikiProjects on the English-language Wikipedia.
+We look at WikiProjects on the English-language Wikipedia.
 WikiProjects are collections of thematically related articles,
-each with their own standards, norms, and processes.
+each with their own standards and norms.
 When measuring the quality of collaborative projects,
 there are at least two distinct measures to consider.
 The first measure is short-term:
@@ -63,9 +63,8 @@ The other measure is long-term:
 the highest quality typically reached by an output,
 which we call {\em performance}.
 These two terms are often used interchangeably,
-but we find it fruitful to distinguish between the two concepts.
-We find that Wikipedia, like many other collaborations,
-exhibits an overall trade-off between performance and efficiency.
+but we find it fruitful to distinguish between the two.
+We find that Wikipedia exhibits an overall trade-off between performance and efficiency.
 However, some WikiProjects are higher in both efficiency and performance
 than others,
 suggesting the existence of factors that correlate positively with both.
@@ -100,7 +99,7 @@ Our main findings are:
 \begin{itemize}
 \item Despite an overall performance/efficiency trade-off,
 WikiProjects having low-degree coeditor networks tend to have both higher performance and higher efficiency;
-\item Short path lengths tend to be associated with higher performance, consistent with a conformity-based learning strategy;
+\item Short paths are associated with higher performance, consistent with a conformity-based learning strategy;
 \item Structural inequality, as measured by degree skewness, is associated with lower performance;
 \item Our agent-based model
 shows that the efficiency and performance of collaborations can
@@ -127,8 +126,7 @@ We expand the literature with a large-scale, empirical field study.
 In much of the existing literature,
 degree distribution correlates with outcome measures.
 But aside from the naive Bayes case, it is unknown whether
-the correlation is explained best by degree or by another structural property
-correlated with degree, such as characteristic path length.
+the correlation is explained best by degree or by another structural property, such as characteristic path length.
 In the empirical networks we study,
 unlike artificial networks,
 the structural properties vary independently,
@@ -165,14 +163,13 @@ efficient networks can sometimes find more optimal solutions than
 inefficient ones \cite{barkoczi_social_2016}.
 
 {\bf Lab experiments.} Lab-based experiments on networked collaboration
-suggest a complex interaction between network topology,
-and other factors.
-While groups of networked human subjects reliably perform very well on
+suggest a complex interaction between network topology and other factors.
+While groups of networked human subjects perform very well on
 difficult graph-coloring tasks, the best performing network architectures
 (e.g., fully-connected vs. small-world) vary
 from task to task \cite{kearns_experiments_2012}.
-The same studies found that while human subjects tend to perform very well on
-a number of networks, they perform worst on self-organized
+The same studies found that while human subjects tend to perform well on
+some networks, they perform worst on self-organized
 networks.
 Similarly, some network topologies are able to reach faster decisions in the
 presence of more information, while others show the opposite effect
@@ -206,9 +203,7 @@ perform worse \cite{kearns_experiments_2012}.
 For Wikipedia specifically,
 Robert and Romero \shortcite{robert_crowd_2015} found that
 larger group sizes yield higher article ratings
-when the groups are diverse and experienced.
-Also on Wikipedia,
-Kittur and Kraut found that different types of coordination have a complex
+when the groups are diverse and experienced. Kittur and Kraut found that different types of coordination have a complex
 effect on the quality of Wikipedia articles \shortcite{kittur_harnessing_2008}.
 Both explicit and implicit coordination result in higher quality articles,
 with explicit coordination being especially central in the early life of an
@@ -305,7 +300,9 @@ have assessed the article as B-class quality.
 
 \subsection{Data}
 
-Our analysis combines multiple data sets from the English-language Wikipedia.
+Our analysis combines multiple data
+sets\footnote{Data and code at https://elplatt.com/a/WikiProject-Eff-Perf}
+from the English-language Wikipedia.
 For information about edit history, we used a publicly-available data set containing
 metadata (time, article id, user) about all edits from July 12, 2006 to December 2, 2015.
 We used a custom script to scrape article quality assessments from logs produced
@@ -425,12 +422,10 @@ coeditors.
 
 The {\em coeditor network} of a WikiProject consists of nodes representing editors,
 and edges connecting any editors who have edited the same article.
-The edges are directed, with the direction representing the direction of
+The edges are directed, with the direction representing
 {\em plausible information flow};
 an edge from Alice to Bob exists if Alice edited an article and then Bob edited the same article at
-a later time.
-Edges can exist in both directions e.g.,
-if an article was edited first by Alice, then by Bob, and again by Alice.
+a later time. Note that edges can exist in both directions. 
 We make the simplifying assumption of unit weight for all edges.
 We focus on three structural properties:
 degree, characteristic path length, and min-cut.
@@ -447,7 +442,7 @@ Taking the average of either in-degree or out-degree gives the same value:
 the {\em mean degree} of the network.
 In our context, the mean degree represents how many others a given editor has collaborated with.
 We also consider the {\em skewness} of the in-degree and out-degree distributions.
-A large positive degree skewness value for a WikiProject coeditor network
+A large positive degree skewness for a WikiProject coeditor network
 implies that a small number of editors have a very large number of collaborators,
 while a small positive value implies that the editors having the most collaborators
 don't have many more than a typical editor.
@@ -455,14 +450,13 @@ don't have many more than a typical editor.
 We also calculate the characteristic path length for each WikiProject coeditor network.
 The {\em distance} from node $s$ to node $t$ is the distance of the shortest path
 from $s$ to $t$.
-The {\em characteristic path length} (or just {\em path length} for brevity)
+The {\em characteristic path length} (or just {\em path length})
 is the mean distance between all editor pairs,
 excluding unconnected pairs.
 To account for unconnected nodes, we also measure the {\em connected fraction}:
 the fraction of ordered node pairs with a directed path from source to sink.
 The path length represents how quickly information can move through the network.
-Networks with longer paths require more interactions for information to propagate through
-the network,
+Networks with longer paths require more interactions for information to propagate,
 which has been shown to reduce efficiency in some settings
 \cite{mason_propagation_2008,barkoczi_social_2016}.
 
@@ -478,13 +472,11 @@ Instead, we use the mean size of all minimum $st$-cuts, which we refer to as the
 This measure quantifies the number of redundant paths information can take through the network.
 Networks with higher redundancy are more resilient to errors on one path \cite{albert_error_2000}
 and allow innovations to propagate through complex contagion,
-in which innovations are only adopted after multiple exposures through different sources
-\cite{centola_complex_2007}.
+in which innovations are only adopted after multiple exposures \cite{centola_complex_2007}.
 
-The mean path and min-cutare computationally intensive,
+The mean path and min-cut are computationally intensive,
 requiring distance and minimum $st$-cut calculations for each all node pairs.
-For larger projects, these calculations are impractical.
-For large networks, we employed sampling to determine mean path length and mean
+For larger projects, these calculations are impractical and we thus employed sampling to determine mean path length and mean
 min-cut.
 For mean path length, source nodes were sampled, and path length was calculated to all destination nodes
 from each of these.
@@ -496,7 +488,7 @@ and calculating error as a function of sample-size.
 Sample sizes were chosen such that relative error was below 10\%.
 Even with sampling, however, it was impractical to calculate these properties for the largest projects,
 so we exclude the 183 largest projects from the analysis.
-To control for bias in project size, we include several size-related variables in our models.
+
 
 \subsection{Empirical Results}
 
@@ -584,10 +576,9 @@ R$^2_{adj}$&0.37&0.17&0.30&0.43\\
 
 To study the relationship between network structure, efficiency, and performance,
 we model the performance and efficiency of WikiProjects using ordinary least-squares linear regression.
-Each WikiProject is taken as a single observation.
+Each WikiProject is a single observation.
 The models include each project's coeditor network properties as independent variables.
-We also include several project-level variables to control for confounding factors,
-described below.
+We also include the following project-level variables to control for confounding factors.
 \begin{description}
 \item[C-efficiency]
 (Performance only.)
@@ -610,13 +601,13 @@ Our models are summarized in Table \ref{tab:model}.
 Min-cut is excluded from all models to avoid collinearity,
 as it is highly correlated with degree.
 In-degree and out-degree skewness were also highly correlated,
-so we only include out-degree skewness in the models
-(results are qualitatively similar).
+so we only include out-degree skewness
+(results are similar with in-degree skewness).
 Heavy-tailed variables are log-transformed.
 To test the robustness of our results,
 we also computed models using cube root instead of logarithmic transformations,
-as well as using only top-importance and high-importance articles.
-These robustness check yielded qualitatively similar results for all variables,
+and using only top- and high-importance articles.
+The results were qualitatively similar results for all variables,
 except for degree-skewness, which had an inconsistent sign across models.
 
 We see that B-efficiency and C-efficiency have very similar models, but that A-efficiency behaves
@@ -628,7 +619,7 @@ as a good or featured article, which involves a different consensus process than
 The negative dependence of performance on C-efficiency suggests there is generally a trade-off between
 performance and efficiency.
 However, low degree is correlated with both higher efficiency and higher performance,
-suggesting that it is sometimes possible to improve both simultaneously.
+suggesting that it is possible to improve both simultaneously.
 Much of the existing numerical work on networked social learning focuses on path length rather than degree,
 so we explore this result further using simulations in the next section.
 
@@ -733,7 +724,7 @@ Without additional constraints,
 the above model is missing
 several key properties of real-world collaborations.
 In designing our agent-based model, we paid attention to the
-following properties, motivated by real-world collaborations.
+following properties.
 \begin{description}
 \item[Limited concern] Agents are concerned only with a subset of the entire
 state when making decisions and determining preferences.
@@ -741,7 +732,7 @@ state when making decisions and determining preferences.
 \item[Concern-based network] Agents interact with other agents who share a
 common concern over some subset of the state.
 (On Wikipedia, editors interact with others who share interests in the same articles.)
-\item[Unknown objective] Agents can rank states in order of preference,
+\item[Unknown objective] Agents rank states in order of preference,
 but do not have access to the objective function.
 (On Wikipedia, there is no ground truth measure of quality.)
 \item[Single source of truth] At any given time, the system is in a single state
@@ -782,10 +773,10 @@ available information.
 Agents can engage in individual learning \cite{barkoczi_social_2016}
 by applying a hill-climbing algorithm to their current solution.
 In each iteration, one bit of the NK solution string is flipped to maximize the solution value.
-If no change improves the value, the original solution is kept
+If no change improves the value, the original solution is kept.
 The above strategy relies only on rankings of states,
 satisfying the unknown objective assumption.
-However, it does rely on information about the entire state,
+However, it relies on information about the entire state,
 violating the limited concern assumption.
 In order to satisfy this assumption,
 we also define a local variant
@@ -795,12 +786,11 @@ in which individual agents focus on sub-problems.
 
 In social learning,
 agents can also incorporate information from
-other agents they are connected to by a network edge.
+other agents they are connected to by an edge.
 While individual learning always converges to the local maximum relative to the starting point,
 social learning strategies allow agents to ``jump'' to drastically different solutions with higher local maxima.
 In our model, we use both the conformity and best-neighbor strategies from \cite{barkoczi_social_2016}.
-In the {\em best-neighbor} strategy, each agent compares its solution to a sample of its
-neighbors, and chooses the solution with the highest value.
+In the {\em best-neighbor} strategy, each agent compares its solution to a sample of neighbors, and chooses the solution with the highest value.
 In order to compare solutions between neighbors,
 the exact value of the objective function must be known for each solution,
 so this strategy does not satisfy the unknown objective assumption
@@ -812,14 +802,13 @@ unknown objective and limited concern assumptions.
 In both cases, a single iteration of individual learning is performed after each social learning
 iteration.
 Because each agent maintains a separate estimate of the solution,
-neither of these strategies satisfies the single source of truth assumption.
+neither strategy satisfies the single source of truth assumption.
 
 \subsection{Local Majority Strategy}
 
-In order to satisfy the single source of truth assumption,
-we introduce a new strategy, which we call the local majority strategy.
-In {\em local majority}, agents all begin with the same starting state,
-and apply individual learning to their concern to generate
+To satisfy the single source of truth assumption,
+we introduce a new strategy --- {\em local majority}.
+In local majority, agents all begin with the same starting state and apply individual learning to their concern to generate
 possible improvements to the solution.
 Next, a new solution is constructed by considering each locus of the NK solution
 individually.
@@ -834,7 +823,7 @@ but editors may have differing opinions on how to improve that article.
 \subsection{Simulation results}
 
 We simulated 100 trials for rewiring values of 0.0, 0.167, 0.333, 0.5, 0.667, 0.833, and 1.0.
-For each trial we generated an NK model with N=250 and K=7 and ran each social learning strategy
+For each trial we generated an NK model with $N=250$ and $K=7$ and ran each social learning strategy
 (Table \ref{tab:strat}) for 300 iterations,
 as well as a network based on that NK model and rewired.
 For conformity and best-neighbor strategy, we used a sample size of 3, following
@@ -932,11 +921,11 @@ The mean performance and efficiency are reported in Table \ref{tab:sim-eff-perf}
 For all rewiring values, local strategies are less efficient and more performant
 than their non-local counterparts.
 For the best-neighbor strategy, local outperforms global.
-For local conformity strategy performs notably worse than all other strategies.
-The local majority strategy is both more efficient and more performant than others,
+Local conformity performs notably worse than all others.
+Local majority is both more efficient and more performant than others,
 with its performance increasing with higher rewiring.
-These results imply that,
-at least in a simple model of collaboration,
+This implies that,
+at least in a simple collaboration model,
 the performance and efficiency can be simultaneously increased.
 Furthermore, performance and efficiency are potentially affected by both the choice of
 learning strategy and the average degree of the agents' social network.
@@ -965,7 +954,7 @@ used by collaborators.
 While existing research into the role of network structure in collaboration
 has focused on numerical simulations and lab experiments,
 analysis of large real-world systems is an important next step.
-Our empirical analysis of WikiProjects contributes several findings towards a better
+Our empirical analysis contributes several findings towards a better
 understanding of large, decentralized, real-world collaboration.
 We observe several results consistent with previous work:
 a trade-off between performance and efficiency
@@ -977,22 +966,21 @@ and a reduction in performance with increased structural inequality
 By using real-world networks, we were also able to analyze network properties independently,
 allowing us to show that while most existing work has focused on the importance of path length,
 degree distribution may be just as, or more, important.
-The association of low-degree with both high performance and high efficiency is compelling,
+The association of low-degree with both high performance and efficiency is compelling,
 as it sidesteps the usual trade-off between performance and efficiency.
-In low-degree networks, agents have more repeated interactions with smaller groups of collaborators,
-possibly suggesting that small team sizes could be beneficial for large collaborations.
+In low-degree networks, agents have more repeated interactions with smaller groups of collaborators, suggesting that small team sizes could be beneficial for large collaborations.
 Similarly, the observation that performance is higher in projects with less structural inequality suggests that,
-if the challenges of egalitarian organizing can be overcome,
+if the challenges of egalitarian organizing are overcome,
 decentralized collaborations may produce better outcomes than those with centralized, top-down structures.
 
-Our agent-based models offer a few additional insights.
+Our agent-based models offer a several insights.
 We observe degree-dependent performance and efficiency dependence for both local conformity
 and local majority strategies.
 However, these two strategies have opposite degree dependence,
 suggesting that different strategies may be preferable for high-degree and low-degree
 networks.
 Our local majority strategy,
-designed to satisfy several properties present in real-world collaborations,
+designed to satisfy several properties in real-world collaborations,
 shows the strongest effects on performance and efficiency as network degree changes.
 For the local majority strategy,
 the relationship between degree and efficiency is consistent with our
@@ -1002,8 +990,7 @@ However, the performance dependence of this strategy
 is opposite that observed on Wikipedia,
 suggesting that either the local majority strategy
 is incompatible with actual behavior on Wikipedia or
-that other factors (possibly including degree skewness)
-outweigh the contribution of mean degree.
+that other factors outweigh the contribution of mean degree.
 
 Our work has several limitations.
 Our empirical analysis is purely correlative and cannot be used to draw
@@ -1024,27 +1011,24 @@ Does varying degree independently of path length influence
 performance and efficiency in a controlled lab setting?
 
 A better understanding of the relationship between network structure and collaboration
-outcomes has many practical applications.
-Online communities using recommender systems to improve collaboration
-could make recommendations guided by desirable network properties.
+outcomes has practical applications.
+Online communities using recommender systems could make recommendations guided by desirable network properties.
 Similarly, network structure could be used to identify under-performing
 groups in need of an intervention.
 The relationship between network structure and learning strategy suggests that
-behavioral norms interact with network structure.
-This knowledge could be used by interventions to ensure that behavioral norms
-and network structure are aligned for best performance and efficiency.
+behavioral norms interact with network structure, which could be used to ensure that behavioral norms
+and network structure are appropriately aligned.
 
 \section{Conclusion}
 \label{sec:conclusion}
 
 In this paper, we have described the relationship between the structural properties of WikiProject
-coeditor networks and the performance and efficiency of those networks.
-As in other studies, we see a trade-off between performance and efficiency,
-but not an absolute trade-off.
-Some properties, such as low degree, are associated with both higher performance and higher efficiency.
+coeditor networks and their performance and efficiency.
+As in other studies, we see a trade-off between performance and efficiency. However, 
+some properties, such as low degree, are associated with both higher performance and efficiency.
 We also find that the correlations between path length and performance are consistent with a conformity-based
 social learning strategy, but not a greedy best-neighbor strategy.
-We also observe improved performance in more decentralized project, as has been seen in small-scale lab experiments.
+We observe improved performance in more decentralized projects, as has been seen in small-scale lab experiments.
 While the performance and efficiency of most previously-studied social learning strategies depend more on path length than
 degree,
 we have proposed a novel local majority learning strategy that is more realistic, more efficient, and higher performance than
@@ -1053,18 +1037,16 @@ We observe that in both the local majority strategy and a localized version of
 the conformity strategy,
 the performance and efficiency of a collaboration can exhibit degree dependence,
 and that the direction of that dependence depends on the specific strategy being used.
-While additional work is needed to determine causal relationships and how generalizable our results are,
+While additional work is needed to determine causal relationships and the generalizability of our results,
 we have shown evidence that several phenomena predicted by numerical and small-scale lab experiments are present in a large,
-real-world network.
-And, we have identified new behaviors not explained by existing models, suggesting the need for alternate models.
-Our results suggest that the success of large-scale collaborations may be aided by greater decentralization,
+real-world network. Our results suggest that the success of large-scale collaborations may be aided by greater decentralization,
 consensus or conformity-based decision-making, and more tightly-knit collaborations between smaller teams.
 
 \section{Acknowledgments}
 %Anonymized for blind review.
 Thanks to
-Ceren Budak, Scott E. Page, Yan Chen, Tanya Rosenblat, anonymous reviewers,
+Ceren Budak, Scott E. Page, Yan Chen, Tanya Rosenblat,
 and the attendees of the May 25, 2017 MIT Center for Civic Media lab meeting and
 the Berkman-Klein Center Cooperation Working Group for helpful feedback;
 and to Danielle Livneh and Karthik Ramanathan for help collecting the data.
-This research was funded by the University of Michigan School of Information.
+This research was partly supported by the National Science Foundation under Grant No. IIS-1617820.
