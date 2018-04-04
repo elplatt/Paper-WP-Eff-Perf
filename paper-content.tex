@@ -34,7 +34,7 @@ in use.
 \section{Introduction}
 \epigraph
 {The problem with Wikipedia is that it only works in practice. In theory, it's a total disaster.}
-{Gareth Owen \cite{elsharbaty_editing_2016} }
+{---Gareth Owen \cite{elsharbaty_editing_2016} }
 
 The internet has enabled collaborations at a global scale.
 Wikipedia, a free encyclopedia that invites anyone to edit articles,
@@ -288,11 +288,8 @@ The majority of WikiProjects rarely use the A class quality assessment.
 \begin{center}
 \includegraphics[width=3in]{fig-knitting.png}
 \caption{
-From Wikipedia talk page
-for {\em Knitting}.
-Both {\em WikiProject Technology} and
-{\em WikiProject Textile Arts}
-have assessed the article as B-class quality.
+From Wikipedia {\em Knitting} talk page.
+Two WikiProjects have assessed the article as B-class quality.
 \label{fig:knitting}
 }
 \end{center}
@@ -315,11 +312,10 @@ to reconstruct the article id for each title mentioned in the assessment logs.
 
 When individuals collaborate to solve a problem,
 there are many ways to gauge their success.
-Two possibilities are
-1. how quickly they find a solution,
-which we call {\em efficiency}, and
-2. how good their solution is,
-which we call {\em performance}.
+One possibility is {\em efficiency}:
+how quickly they find a solution.
+Another is {\em performance}:
+how good their solution is.
 Evidence from numerical simulations
 \cite{lazer_network_2007,mason_propagation_2008,mason_collaborative_2012,grim_scientific_2013,barkoczi_social_2016},
 lab studies \cite{kearns_experiments_2012},
@@ -330,7 +326,7 @@ suggesting it is sometimes possible to simultaneously increase
 performance and efficiency.
 The identification of factors associated with both higher efficiency
 and higher performance has obvious practical importance.
-In this paper, we focus specifically on how network structure
+In this paper, we focus on how network structure
 relates to efficiency and performance within WikiProjects.
 
 For a WikiProject, efficiency quantifies how much participants can raise the
@@ -848,18 +844,7 @@ Strategies are defined in Table \ref{tab:strat}.
 
 \begin{table}
 \small
-\caption{
-Simulated Performance and Efficiency.
-Results shown for 100 trials with P[rewire] = 0.
-Strategies are defined in Table \ref{tab:strat}.
-Local strategies are less efficient than their non-local counterparts.
-Local best-neighbor out-performs global,
-while local conformity is the worst performer in all cases.
-The local majority strategy is both most efficient and most performant.
-\label{tab:sim-eff-perf}
-}
 \centering
-\bigskip
 \begin{tabular}{lll}
 Strategy & Performance & Efficiency\\
 \hline
@@ -870,16 +855,21 @@ Conf+LI & 0.586 $\pm$ 0.001 & 0.030 $\pm$ 0.001 \\
 LMaj+LI & 0.729 $\pm$ 0.001 & 0.046 $\pm$ 0.002 \\
 \hline
 \end{tabular}
+\caption{
+Simulated Performance and Efficiency.
+Results shown for 100 trials with P[rewire] = 0.
+Strategies are defined in Table \ref{tab:strat}.
+Local strategies are less efficient than their non-local counterparts.
+Local best-neighbor out-performs global,
+while local conformity is the worst performer in all cases.
+The local majority strategy is both most efficient and most performant.
+\label{tab:sim-eff-perf}
+}
 \end{table}
 
 \begin{table}
 \small
-\caption{
-Degree regression coefficients for simulations.
-\label{tab:sim-perf}
-}
 \centering
-\bigskip
 \begin{tabular}{lll}
 Strategy & Perf. Std. Coeff. & Eff. Std. Coeff.\\
 \hline
@@ -893,6 +883,10 @@ LMaj+LI & \+1.2$\times{10^{-4\;**}}$ & -0.038$^{***}$ \\
 \begin{tablenotes}
 \item \centering * $p < 0.05$. ** $p < 0.01$. *** $p < 0.001$.
 \end{tablenotes}
+\caption{
+Degree regression coefficients for simulations.
+\label{tab:sim-perf}
+}
 \end{table}
 
 \begin{figure*}
