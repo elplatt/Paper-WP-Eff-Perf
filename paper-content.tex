@@ -4,7 +4,7 @@ but the best practices for organizing such large collaborations are still not cl
 Wikipedia is a visible and successful example of such a collaboration which might offer
 insight into what makes large-scale, decentralized collaborations successful.
 We analyze the relationship between the structural properties of WikiProject coeditor networks
-and the performance and efficiency of those networks.
+and the performance and efficiency of those projects.
 We confirm the existence of an overall performance-efficiency trade-off,
 while observing that some projects are higher than others in both performance
 and efficiency,
@@ -65,13 +65,12 @@ which we call {\em performance}.
 These two terms are often used interchangeably,
 but we find it fruitful to distinguish between the two.
 We find that Wikipedia exhibits an overall trade-off between performance and efficiency.
-However, some WikiProjects are higher in both efficiency and performance
-than others,
+However, some WikiProjects surpass others in both efficiency and performance,
 suggesting the existence of factors that correlate positively with both.
 
 Our study focuses on the coeditor networks of each WikiProject:
 which editors have edited at least one article in common?
-These relationships represent possible flows of information.
+These relationships represent the possible flow of information.
 We focus specifically on mean degree, degree skewness, and path length.
 High-degree editors have more collaborators,
 which can increase diversity and access to information at the possible
@@ -81,7 +80,7 @@ Highly skewed degree distributions can amplify the biases of high-degree
 editors while reducing the need for explicit coordination
 \cite{kearns_experiments_2012}.
 Networks with shorter path lengths allow information to travel more quickly
-at the possible expense of less localized diversity
+at the possible expense of less local diversity
 \cite{mason_propagation_2008,barkoczi_social_2016}.
 
 In addition to our empirical study,
@@ -90,15 +89,15 @@ assumptions on networked collaboration.
 We model individual behavior using a {\em social learning strategy} that
 assumes agents 1. can only access a fraction of the model's state,
 2. interact with others who share their concerns,
-and 3. reconcile their preferences into a single state.
+and 3. integrate their preferences into a single state.
 Our model is the first we are aware of to incorporate these assumptions,
-which are present across many real-world collaborations
+which are present across many real-world collaborations,
 including Wikipedia.
 
 Our main findings are:
 \begin{itemize}
 \item Despite an overall performance/efficiency trade-off,
-WikiProjects having low-degree coeditor networks tend to have both higher performance and higher efficiency;
+WikiProjects with low-degree coeditor networks tend to have both higher performance and higher efficiency;
 \item Short paths are associated with higher performance, consistent with a conformity-based learning strategy;
 \item Structural inequality, as measured by degree skewness, is associated with lower performance;
 \item Our agent-based model
@@ -109,11 +108,11 @@ and that the direction of that dependence varies with social learning strategy.
 
 Our findings shed light on the importance of network structure for successful
 collaboration.
-These findings might be informative for future interventions which
+These findings might be informative for future interventions that
 recommend tasks based on how they will
 influence network structure,
-or interventions which seek to encourage the behavioral norms most
-effective for existing network structure.
+or for interventions that seek to encourage behaviors
+complementary to existing network structure.
 
 \section{Background and Related Work}
 \label{sec:background}
@@ -122,7 +121,7 @@ and collaboration outcomes.
 This connection has been explored by a number of theoretical,
 numerical, and small-scale lab studies in the field of
 {\em social learning}.
-We expand the literature with a large-scale, empirical field study.
+We contribute to this literature with a large-scale, empirical field study.
 In much of the existing literature,
 degree distribution correlates with outcome measures.
 But aside from the naive Bayes case, it is unknown whether
@@ -135,7 +134,7 @@ network properties that correlate with outcome variables.
 
 {\bf Social Learning.} In {\em networked social learning},
 agents are represented by nodes on a network
-and can only interact with their neighbors.
+and can interact only with their neighbors.
 Social learning tasks can be divided into cases where agents have {\em generated signals}
 (independently noisy estimates of a true value)
 and those where agents have {\em interpreted signals}
@@ -147,7 +146,7 @@ For generated signals,
 a naive Bayesian approach converges to the truth
 when all agents have the same degree,
 while the speed of convergence depends on the {\em spectral gap}
-between the two largest eigenvalues of the network's adjacency matrix
+between the two largest eigenvalues of the network's interaction matrix
 \cite{degroot_reaching_1974,golub_naive_2010}.
 Complex social learning tasks can also be modeled as the problem
 of maximizing an objective function with many local maxima,
@@ -161,6 +160,9 @@ due to less time for exploration
 However, when conformity-based social learning strategies are used,
 efficient networks can sometimes find more optimal solutions than
 inefficient ones \cite{barkoczi_social_2016}.
+Using an agent-based model, Hong and Page \shortcite{hong_groups_2004} found that
+diverse groups can outperform groups composed of the best individual
+problem-solvers.
 
 {\bf Lab experiments.} Lab-based experiments on networked collaboration
 suggest a complex interaction between network topology and other factors.
@@ -169,8 +171,9 @@ difficult graph-coloring tasks, the best performing network architectures
 (e.g., fully-connected vs. small-world) vary
 from task to task \cite{kearns_experiments_2012}.
 The same studies found that while human subjects tend to perform well on
-some networks, they perform worst on self-organized
-networks.
+many networks, they perform worst on self-organized
+networks, possibly due to higher structural inequality
+(degree skewness).
 Similarly, some network topologies are able to reach faster decisions in the
 presence of more information, while others show the opposite effect
 \cite{kearns_experimental_2006}.
@@ -179,16 +182,13 @@ suggest that individual decisions towards altruism are conditional on their
 neighbor's behavior and ``contagious'' up to three degrees away.
 Later experiments by Suri and Watts \shortcite{suri_cooperation_2011} confirmed the
 existence of conditional altruism,
-but concluded that altruistic
-behavior only influences first-degree neighbors.
+but concluded that altruism
+influences only first-degree neighbors.
 
 {\bf Digital Communities.}
 Research on digital communities has also examined the role of 
 diversity and inequality
 in collaborative work and decision-making.
-Using an agent-based model, Hong and Page \shortcite{hong_groups_2004} found that
-diverse groups can outperform groups composed of the best individual
-problem-solvers.
 In sociology, research has focused on the relationship between
 network structure and social capital.
 Powerful individuals are often ``brokers''
@@ -196,9 +196,6 @@ who act as exclusive intermediaries between disconnected portions of the
 social network \cite{silverman_patronage_1965}.
 Similarly, successful innovation in organizations often occurs in ``structural
 holes'' between groups \cite{granovetter_strength_1973}.
-There is some evidence that groups with higher structural inequality
-(degree skewness)
-perform worse \cite{kearns_experiments_2012}.
 
 For Wikipedia specifically,
 Robert and Romero \shortcite{robert_crowd_2015} found that
@@ -226,8 +223,8 @@ more loosely organized than traditional teams.
 
 Across the broad range of work discussed above,
 a few key themes emerge.
-The efficiency and performance of collaborations are both important considerations
-and vary depending on both network structure and type of task
+Both the efficiency and the performance of a collaboration are important
+considerations and vary depending on both network structure and type of task
 \cite{kearns_experiments_2012}.
 While generated signal models of social learning predict no relationship
 between the two
@@ -241,14 +238,14 @@ collaboration
 \section{WikiProjects}
 \label{sec:wp}
 
-Many articles on Wikipedia belong to one or more WikiProject.
+Many articles on Wikipedia belong to one or more WikiProjects.
 WikiProjects are groups of thematically-related articles
 (e.g., articles related to Philosophy).
-Information about the an article's associated WikiProjects
+Information about an article's associated WikiProjects
 can be viewed on that
 article's talk page (Figure \ref{fig:knitting}).
 Each WikiProject has its own page and talk page,
-containing information about community norms within the project
+containing information about conventions within the project
 as well as discussions about individual articles.
 WikiProjects are thus distinct communities, with distinct norms and processes.
 These communities are the fundamental units of analysis in this paper.
@@ -266,9 +263,9 @@ Differences between quality assessments could reflect different quality standard
 different grading systems, different responsiveness to changes in an article, etc.
 
 In addition to the above assessment classes, articles on Wikipedia can be tagged as
-"good article" (GA) or "featured article" (FA) quality.
+``good article'' (GA) or ``featured article'' (FA) quality.
 FA and GA determinations are made using a Wikipedia-wide consensus,
-in parallel to any WikiProject-based evaluations.
+independently of WikiProject-based evaluations.
 FA articles are ``the best articles Wikipedia has to offer''
 \cite{wikipedia_contributors_wikipedia:featured_2018}.
 GA articles meet ``a core set of editorial standards`` but are ``not featured article quality''
@@ -280,7 +277,7 @@ For example, the article {\em Mewtwo} was assessed as GA status on October 5,
 its quality assessment was changed from B to GA within both
 {\em WikiProject Pok\'emon} and
 {\em WikiProject Video Games}.
-This example also illustrates a quirk of Wikipedia norms:
+This example also illustrates a quirk of conventions on Wikipedia:
 very often, articles pass to GA or FA directly from B, skipping A.
 The majority of WikiProjects rarely use the A class quality assessment.
 
@@ -332,9 +329,9 @@ relates to efficiency and performance within WikiProjects.
 For a WikiProject, efficiency quantifies how much participants can raise the
 assessed quality of an article for a fixed amount of work.
 We measure work by the number of revisions made.
-Quality assessments are made through consensus of the project participants themselves,
-so different projects can have different standards and practices for assessing article quality.
-So the efficiency is not a measure of how quickly some objective measure of quality improves,
+Quality assessments are made through consensus of the project participants themselves.
+Different projects can have different standards and practices for assessing article quality,
+so the efficiency is not a measure of how quickly some objective measure of quality improves,
 but rather of how quickly the project participants can reach consensus on the improvements that
 need to be made and make those improvements.
 Because our definition relies on assessment transitions,
@@ -345,7 +342,7 @@ we desire our definition of efficiency to meet the following conditions:
 \begin{itemize}
 \item{Strictly increasing in the number of articles reaching grade $G$ (with revision count fixed);}
 \item{Strictly decreasing in the number of revisions (with transition count fixed);}
-\item{Independent of WikiProject size: not affected by adding an article with the same efficiency.}
+\item{Independent of WikiProject size: not affected by adding an article having the same efficiency.}
 \end{itemize}
 
 We now define an efficiency measure which meets the above criteria.
@@ -353,8 +350,10 @@ Let $T(W,G)$ be the set of article assessment transitions from below grade $G$
 to grade $G$ or higher in project $W$.
 Let $N(W,G)$ be the number of articles in project $W$ which ever transition
 from below grade $G$ to grade $G$ (or higher).
-Let $r(t)$ be the number of article revisions since its previous grade transition,
-and let $g(t)$ be the number of grade levels crossed by transition $t$.
+Given a transition $t$,
+let $r(t)$ be the number of revisions to the article
+since its previous grade transition,
+and let $g(t)$ be the number of grade levels crossed bt $t$.
 We quantify the efficiency $E(W,G)$ as the inverse of the mean number of revisions
 per transition:
 \beq
@@ -367,12 +366,12 @@ N(W,G)
 \sum_{t \in T(W,G)} \frac{r(t)}{g(t)}
 \right]^{-1},
 \eeq
-Where the $g(t)$ term accounts for assessments raising article quality by several
-grades,
+where the $g(t)$ term accounts for assessments that raise article quality by
+several grades by
 dividing the revisions evenly between all grade levels achieved.
 
 For performance, we wish to quantify how good articles tend to be when they reach a stable state.
-Measuring performance is difficult for several reasons:
+Measuring performance is difficult for two reasons:
 there is no objective measure of article quality available,
 and articles are always changing, making it difficult to know which articles should be considered
 complete or stable.
@@ -382,7 +381,7 @@ In addition to per-project quality assessment, articles can be given ``featured 
 The criteria for these statuses are consistent across all of Wikipedia,
 and any editor can participate in the discussion and decision to award good or featured
 status.
-In other words, the good and featured statuses are more objective than per-project assessments.
+In other words, the good and featured statuses are less subjective than per-project assessments.
 
 Our performance measure $P(W)$ is defined simply as
 the percentage of articles in project $W$ which have reached
@@ -396,7 +395,7 @@ and $n(W)$ is the total number of articles.
 \subsection{Coeditor Networks}
 
 We would like to determine how the social network structure of
-Wikipedia--the pattern of who interacts with whom--relates to
+Wikipedia---the pattern of who interacts with whom---relates to
 efficiency and performance.
 There are several types of interactions we could focus on,
 including:
@@ -416,8 +415,8 @@ between all editors who came before them,
 motivating our choice to focus on the social network structure of
 coeditors.
 
-The {\em coeditor network} of a WikiProject consists of nodes representing editors,
-and edges connecting any editors who have edited the same article.
+The {\em coeditor network} of a WikiProject consists of nodes representing editors
+and edges connecting pairs of editors who have edited the same article.
 The edges are directed, with the direction representing
 {\em plausible information flow};
 an edge from Alice to Bob exists if Alice edited an article and then Bob edited the same article at
@@ -436,7 +435,8 @@ The degree distribution is the simplest network property we analyze.
 The in-degree (out-degree) of a node is the number of edges to (from) that node.
 Taking the average of either in-degree or out-degree gives the same value:
 the {\em mean degree} of the network.
-In our context, the mean degree represents how many others a given editor has collaborated with.
+In our context, the mean degree represents, on average,
+how many other editors each editor has collaborated with.
 We also consider the {\em skewness} of the in-degree and out-degree distributions.
 A large positive degree skewness for a WikiProject coeditor network
 implies that a small number of editors have a very large number of collaborators,
@@ -456,10 +456,10 @@ Networks with longer paths require more interactions for information to propagat
 which has been shown to reduce efficiency in some settings
 \cite{mason_propagation_2008,barkoczi_social_2016}.
 
-Our final network measure quantifies the connectivity of a project's coeditor network using
-min-cut size.
-The minimum $st$-cut between nodes $s$ and $t$ is the set of edges that must be removed in order that
-no path exists from $s$ to $t$.
+Our final network measure quantifies the connectivity of a project's coeditor
+network using min-cut size.
+The minimum $st$-cut between nodes $s$ and $t$ is the set of edges that must beremoved
+for no path exists from $s$ to $t$.
 The minimum cut (min-cut) of a graph is the smallest minimum $st$-cut over all node pairs $st$. 
 The size of the graph min-cut quantifies the connectivity of a graph,
 but only incorporates information about edges lying on paths crossing the min-cut.
@@ -471,9 +471,9 @@ and allow innovations to propagate through complex contagion,
 in which innovations are only adopted after multiple exposures \cite{centola_complex_2007}.
 
 The mean path and min-cut are computationally intensive,
-requiring distance and minimum $st$-cut calculations for each all node pairs.
-For larger projects, these calculations are impractical and we thus employed sampling to determine mean path length and mean
-min-cut.
+requiring distance and minimum $st$-cut calculations for all node pairs.
+For larger projects, these calculations are impractical and we thus employed
+sampling to determine mean path length and mean min-cut.
 For mean path length, source nodes were sampled, and path length was calculated to all destination nodes
 from each of these.
 For min-cut, node pairs were sampled.
@@ -500,9 +500,12 @@ suggesting the existence of factors which correlate positively with both.
 
 We also find that mean min-cut is highly correlated with degree ($r=0.980$, $p<0.001$),
 so we exclude min-cut from regression models to prevent collinearity.
-The high correlation between mean degree and min-cut implies that in most cases
-the minimum $st$-cut is simply the either set of edges from $s$ or the set of edges to $t$.
-The rarity of non-trivial min-cuts suggests that WikiProject coeditor networks have very few central
+The high correlation between mean degree and min-cut implies that,
+in most cases,
+the minimum $st$-cut is simply the set of edges from $s$
+or the set of edges to $t$.
+The rarity of non-trivial min-cuts suggests that WikiProject coeditor
+networks have very few central
 bottlenecks and are thus highly decentralized.
 
 \begin{figure}[t!]
@@ -577,20 +580,20 @@ The models include each project's coeditor network properties as independent var
 We also include the following project-level variables to control for confounding factors.
 \begin{description}
 \item[C-efficiency]
-(Performance only.)
+(performance only).
 Quantifies how quickly a WikiProject improves articles.
 Efficiencies for different grades are highly correlated,
 so we include only one.
-\item[Connected fraction]
+\item[Connected fraction.]
 Fraction of coeditor pairs connected by a path.
-\item[Talk fraction] Fraction of total revisions made to talk pages.
-\item[Mean similarity] Mean Jaccard similarity (by article) with other WikiProjects; a measure of topical complexity.
-\item[Mean editors/article] Mean number of editors collaborating on each article in a WikiProject.
-\item[Article count] Total number of articles in the WikiProject.
-\item[Editor count] Total number of editors working on articles within a WikiProject.
-\item[Revision count] Total number of revisions to articles in a WikiProject.
-\item[First assessment] Timestamp of first assessment; a measure of how long a WikiProject has been active.
-\item[Mean article age] Mean age of articles within a WikiProject.
+\item[Talk fraction.] Fraction of total revisions made to talk pages.
+\item[Mean similarity.] Mean Jaccard similarity (by article) with other WikiProjects; a measure of topical complexity.
+\item[Mean editors/article.] Mean number of editors collaborating on each article in a WikiProject.
+\item[Article count.] Total number of articles in the WikiProject.
+\item[Editor count.] Total number of editors working on articles within a WikiProject.
+\item[Revision count.] Total number of revisions to articles in a WikiProject.
+\item[First assessment.] Timestamp of first assessment; a measure of how long a WikiProject has been active.
+\item[Mean article age.] Mean age of articles within a WikiProject.
 \end{description}
 
 Our models are summarized in Table \ref{tab:model}.
@@ -598,7 +601,7 @@ Min-cut is excluded from all models to avoid collinearity,
 as it is highly correlated with degree.
 In-degree and out-degree skewness were also highly correlated,
 so we only include out-degree skewness
-(results are similar with in-degree skewness).
+(results are similar for in-degree skewness).
 Heavy-tailed variables are log-transformed.
 To test the robustness of our results,
 we also computed models using cube root instead of logarithmic transformations,
@@ -608,9 +611,11 @@ except for degree-skewness, which had an inconsistent sign across models.
 
 We see that B-efficiency and C-efficiency have very similar models, but that A-efficiency behaves
 differently in its dependence on degree skewness and connectivity.
-The different behavior of A-efficiency is likely explained by the observation that the A-Class quality is
-infrequently used in practice, meaning that the quality level is usually achieved when an article is rated
-as a good or featured article, which involves a different consensus process than lower ratings.
+The different behavior of A-efficiency is likely explained by the
+observation that the A-Class quality is infrequently used in practice.
+The A-Class quality level is usually passed when an article reaches
+good or featured article status,
+which follow deifferent a consensus process from other ratings.
 
 The negative dependence of performance on C-efficiency suggests there is generally a trade-off between
 performance and efficiency.
@@ -722,16 +727,16 @@ several key properties of real-world collaborations.
 In designing our agent-based model, we paid attention to the
 following properties.
 \begin{description}
-\item[Limited concern] Agents are concerned only with a subset of the entire
+\item[Limited concern.] Agents are concerned only with a subset of the entire
 state when making decisions and determining preferences.
 (On Wikipedia, editors typically interact with a small subset of the articles.)
-\item[Concern-based network] Agents interact with other agents who share a
+\item[Concern-based network.] Agents interact with other agents who share a
 common concern over some subset of the state.
 (On Wikipedia, editors interact with others who share interests in the same articles.)
-\item[Unknown objective] Agents rank states in order of preference,
+\item[Unknown objective.] Agents rank states in order of preference,
 but do not have access to the objective function.
 (On Wikipedia, there is no ground truth measure of quality.)
-\item[Single source of truth] At any given time, the system is in a single state
+\item[Single source of truth.] At any given time, the system is in a single state
 and agent preferences are based on local modifications to that state.
 (At any point in time, there is only one current version of Wikipedia.)
 \end{description}
@@ -765,8 +770,8 @@ and the average degree of the agent-agent network is increased.
 \subsection{Networked Learning Strategies}
 
 Learning strategies determine how agents update their preferences based on
-available information.
-Agents can engage in individual learning \cite{barkoczi_social_2016}
+available information \cite{barkoczi_social_2016}.
+Agents can engage in individual learning
 by applying a hill-climbing algorithm to their current solution.
 In each iteration, one bit of the NK solution string is flipped to maximize the solution value.
 If no change improves the value, the original solution is kept.
@@ -803,14 +808,15 @@ neither strategy satisfies the single source of truth assumption.
 \subsection{Local Majority Strategy}
 
 To satisfy the single source of truth assumption,
-we introduce a new strategy --- {\em local majority}.
+we introduce a new strategy: {\em local majority}.
 In local majority, agents all begin with the same starting state and apply individual learning to their concern to generate
 possible improvements to the solution.
 Next, a new solution is constructed by considering each locus of the NK solution
 individually.
-Every agent concerned with a bit votes for its state based on their preferred
+Every agent concerned with a locus votes for its state based on their preferred
 new solution and the majority state is chosen.
-The result of this process is that all agents agree on a single improved state,
+The result of this process is that all agents integrate their solutions into
+a single state,
 which forms the basis for the next iteration.
 This strategy more realistically reflects collaborations like Wikipedia:
 at any given time, a Wikipedia article has a single state, determined by consensus,
@@ -819,16 +825,16 @@ but editors may have differing opinions on how to improve that article.
 \subsection{Simulation results}
 
 We simulated 100 trials for rewiring values of 0.0, 0.167, 0.333, 0.5, 0.667, 0.833, and 1.0.
-For each trial we generated an NK model with $N=250$ and $K=7$ and ran each social learning strategy
-(Table \ref{tab:strat}) for 300 iterations,
-as well as a network based on that NK model and rewired.
+For each trial we generated an NK model with $N=250$ and $K=7$,
+generated a concern-based network, and ran each social learning strategy
+(Table \ref{tab:strat}) for 300 iterations.
 For conformity and best-neighbor strategy, we used a sample size of 3, following
 \cite{barkoczi_social_2016}.
 We confirmed that all trials converged to their maximum value before reaching
 the last iteration.
 Networks had mean degree 116.6 with 1.3 standard deviation,
 and mean path length of 1.766 with 0.0027 standard deviation.
-The coefficient of variation of degree is approximately 10\%,
+The coefficient of variation for degree is approximately 10\%,
 while only 1\% for mean path length, confirming that the rewiring process has a stronger influence
 on degree than on path length.
 
@@ -893,7 +899,7 @@ Degree regression coefficients for simulations.
 \includegraphics[width=6.67in,height=1.33in]{fig-deg-eff.pdf}
 \includegraphics[width=6.67in,height=1.33in]{fig-deg-perf.pdf}
 \caption{
-Efficiency and Performance of social learning strategies vs. network degree.
+Efficiency and Performance of social learning strategies vs. mean network degree.
 Each point represents a single trial of 300 iterations.
 Strategies are defined in Table \ref{tab:strat}.
 The local best-neighbor strategy shows
@@ -910,7 +916,7 @@ with the efficiency showing the largest effect size of all strategies.
 
 Figure \ref{fig:val-iter} shows how agents' solutions improve after repeated applications of
 different learning strategies and rewiring values.
-Each curve represents an average over 100 trials, each with 250 agent solutions.
+Each curve represents an average over 100 trials, each with 250 agents.
 The mean performance and efficiency are reported in Table \ref{tab:sim-eff-perf}.
 For all rewiring values, local strategies are less efficient and more performant
 than their non-local counterparts.
@@ -920,7 +926,7 @@ Local majority is both more efficient and more performant than others,
 with its performance increasing with higher rewiring.
 This implies that,
 at least in a simple collaboration model,
-the performance and efficiency can be simultaneously increased.
+performance and efficiency can be simultaneously increased.
 Furthermore, performance and efficiency are potentially affected by both the choice of
 learning strategy and the average degree of the agents' social network.
 
@@ -957,10 +963,10 @@ higher performance for shorter path lengths in a conformity setting
 \cite{barkoczi_social_2016},
 and a reduction in performance with increased structural inequality
 \cite{kearns_experiments_2012}.
-By using real-world networks, we were also able to analyze network properties independently,
-allowing us to show that while most existing work has focused on the importance of path length,
-degree distribution may be just as, or more, important.
-The association of low-degree with both high performance and efficiency is compelling,
+By using real-world networks, we were also able to analyze network properties independently.
+While most existing work has focused on the importance of path length,
+our findings suggest degree distribution may be just as, or more, important.
+The association of low degree with both high performance and high efficiency is compelling,
 as it sidesteps the usual trade-off between performance and efficiency.
 In low-degree networks, agents have more repeated interactions with smaller groups of collaborators, suggesting that small team sizes could be beneficial for large collaborations.
 Similarly, the observation that performance is higher in projects with less structural inequality suggests that,
@@ -968,13 +974,13 @@ if the challenges of egalitarian organizing are overcome,
 decentralized collaborations may produce better outcomes than those with centralized, top-down structures.
 
 Our agent-based models offer a several insights.
-We observe degree-dependent performance and efficiency dependence for both local conformity
-and local majority strategies.
+We observe degree-dependent performance and efficiency
+for both local conformity and local majority strategies.
 However, these two strategies have opposite degree dependence,
 suggesting that different strategies may be preferable for high-degree and low-degree
 networks.
 Our local majority strategy,
-designed to satisfy several properties in real-world collaborations,
+designed to satisfy several properties found in real-world collaborations,
 shows the strongest effects on performance and efficiency as network degree changes.
 For the local majority strategy,
 the relationship between degree and efficiency is consistent with our
@@ -1010,14 +1016,15 @@ Online communities using recommender systems could make recommendations guided b
 Similarly, network structure could be used to identify under-performing
 groups in need of an intervention.
 The relationship between network structure and learning strategy suggests that
-behavioral norms interact with network structure, which could be used to ensure that behavioral norms
-and network structure are appropriately aligned.
+behaviors interact with network structure,
+which could be used to encourage behaviors complementary to existing network
+structure.
 
 \section{Conclusion}
 \label{sec:conclusion}
 
 In this paper, we have described the relationship between the structural properties of WikiProject
-coeditor networks and their performance and efficiency.
+coeditor networks, their performance, and their efficiency.
 As in other studies, we see a trade-off between performance and efficiency. However, 
 some properties, such as low degree, are associated with both higher performance and efficiency.
 We also find that the correlations between path length and performance are consistent with a conformity-based
@@ -1030,17 +1037,23 @@ existing strategies.
 We observe that in both the local majority strategy and a localized version of
 the conformity strategy,
 the performance and efficiency of a collaboration can exhibit degree dependence,
-and that the direction of that dependence depends on the specific strategy being used.
-While additional work is needed to determine causal relationships and the generalizability of our results,
-we have shown evidence that several phenomena predicted by numerical and small-scale lab experiments are present in a large,
-real-world network. Our results suggest that the success of large-scale collaborations may be aided by greater decentralization,
-consensus or conformity-based decision-making, and more tightly-knit collaborations between smaller teams.
+and that the direction of that dependence varies with the specific strategy being used.
+While additional work is needed to determine causal relationships
+and the generalizability of our results,
+we have shown evidence that several phenomena predicted by numerical
+and small-scale lab experiments are present in a large,
+real-world collaboration.
+Our results suggest that the success of large-scale collaborations may be aided
+by greater decentralization,
+consensus or conformity-based decision-making,
+and more tightly-knit collaborations between smaller teams.
 
 \section{Acknowledgments}
 %Anonymized for blind review.
 Thanks to
 Ceren Budak, Scott E. Page, Yan Chen, Tanya Rosenblat,
-and the attendees of the May 25, 2017 MIT Center for Civic Media lab meeting and
-the Berkman-Klein Center Cooperation Working Group for helpful feedback;
+anonymous reviewers,
+and the attendees of the May 25, 2017 MIT Center for Civic Media lab meeting
+and the Berkman-Klein Center Cooperation Working Group for helpful feedback;
 and to Danielle Livneh and Karthik Ramanathan for help collecting the data.
 This research was partly supported by the National Science Foundation under Grant No. IIS-1617820.
