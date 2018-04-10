@@ -1,3 +1,56 @@
+\def\year{2018}\relax
+%File: formatting-instruction.tex
+\documentclass[letterpaper]{article} %DO NOT CHANGE THIS
+\usepackage{aaai18}  %Required
+\usepackage{times}  %Required
+\usepackage{helvet}  %Required
+\usepackage{courier}  %Required
+\usepackage{url}  %Required
+\usepackage{graphicx}  %Required
+\frenchspacing  %Required
+\setlength{\pdfpagewidth}{8.5in}  %Required
+\setlength{\pdfpageheight}{11in}  %Required
+%PDF Info Is Required:
+  \pdfinfo{
+/Title (Network Structure, Efficiency, and Performance in WikiProjects)
+/Author Edward L. Platt and Daniel M. Romero}
+\setcounter{secnumdepth}{0}
+
+% Document-specific packages
+\usepackage{epigraph}
+\usepackage[normal]{threeparttable}
+\usepackage{graphicx}
+\usepackage{bbding}
+
+% Document-specific definitions
+\newcommand{\beq}{\begin{eqnarray}}
+\newcommand{\eeq}{\end{eqnarray}}
+\newcommand{\+}{\phantom{-}}
+
+ \begin{document}
+% The file aaai.sty is the style file for AAAI Press 
+% proceedings, working notes, and technical reports.
+%
+\title{Network Structure, Efficiency, and Performance in WikiProjects}
+%\author{Anonymized \\
+%for\\
+%blind review
+%\And
+%Anonymized \\
+%for\\
+%blind review
+\author{Edward L. Platt \\
+University of Michigan\\
+Ann Arbor, MI\\
+elplatt@umich.edu
+\And
+Daniel M. Romero\\
+University of Michigan\\
+Ann Arbor, MI\\
+drom@umich.edu
+}
+\maketitle
+
 \begin{abstract}
 The internet has enabled collaborations at a scale never before possible,
 but the best practices for organizing such large collaborations are still not clear.
@@ -1059,3 +1112,8 @@ and the attendees of the May 25, 2017 MIT Center for Civic Media lab meeting
 and the Berkman-Klein Center Cooperation Working Group for helpful feedback;
 and to Danielle Livneh and Karthik Ramanathan for help collecting the data.
 This research was partly supported by the National Science Foundation under Grant No. IIS-1617820.
+
+\bibliographystyle{aaai}
+\bibliography{wp-eff-perf}
+\end{document}
+
